@@ -49,167 +49,164 @@
         "addblockbutton": ""
     }
 }}
-{{> theme_moove/head }}
+                     <div style="display:none;"> {{{ output.main_content }}}</div>
 
-<body {{{ bodyattributes }}}>
-{{> core/local/toast/wrapper}}
-<div id="page-wrapper" class="d-print-block">
+                     <!DOCTYPE html>
+                     <html lang="en">
 
-    {{{ output.standard_top_of_body_html }}}
+                     {{! <head>
+                         <meta charset="utf-8" />
+                         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                         <meta name="description" content="" />
+                         <meta name="author" content="" />
+                         <title>Philippine Army Cybersecurity Clearance System | PACCS</title>
+                         <!-- Favicon-->
+                         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+                         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous">
+                         </script> }}
 
-    {{> theme_moove/navbar }}
+                         <!-- Google fonts-->
+                          {{> theme_moove/head }}
+                           <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"
+                             type="text/css" />
+                         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+                             rel="stylesheet" type="text/css" />
+                         <link href="{{config.wwwroot}}/custom/template/css/styles.css" rel="stylesheet" />
+                        
+            
+                     <body id="page-top">
+                         <!-- Masthead-->
+                         <header class="masthead" style="padding-top: 36rem;">
+                             <div class="container">
+                                 {{! <div class="masthead-subheading" >Army Signal Regiment</div>
+                <div class="masthead-heading text-uppercase">Secure Your Future!</div> }}
+                                 <a class="btn btn-primary btn-xl text-uppercase"
+                                     href="{{config.wwwroot}}/login">Login</a>
+                             </div>
+                         </header>
+                         <!-- Services-->
+                         {{! <section class="page-section" id="services">
+                             <div class="container">
+                                 <div class="text-center">
+                                     <h2 class="section-heading text-uppercase">Services</h2>
+                                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.
+                                     </h3>
+                                 </div>
+                                 <div class="row text-center">
+                                     <div class="col-md-4">
+                                         <span class="fa-stack fa-4x">
+                                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                                         </span>
+                                         <h4 class="my-3">E-Commerce</h4>
+                                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                             Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
+                                         </p>
+                                     </div>
+                                     <div class="col-md-4">
+                                         <span class="fa-stack fa-4x">
+                                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                                         </span>
+                                         <h4 class="my-3">Responsive Design</h4>
+                                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                             Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
+                                         </p>
+                                     </div>
+                                     <div class="col-md-4">
+                                         <span class="fa-stack fa-4x">
+                                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                             <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                                         </span>
+                                         <h4 class="my-3">Web Security</h4>
+                                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                             Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
+                                         </p>
+                                     </div>
+                                 </div>
+                             </div>
+                         </section> }}
 
-    <div id="page" data-region="mainpage" data-usertour="scroller" class="drawers drag-container bg-white">
-        {{#slidercount}}
-            <div id="mooveslideshow" class="container-fluid">
-                <div id="carousel-indicators" class="carousel slide carousel-fade" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        {{#slides}}
-                            <li data-target="#carousel-indicators" data-slide-to="{{{ key }}}" {{#active}}class="active"{{/active}}></li>
-                        {{/slides}}
-                    </ol>
-                    <div class="carousel-inner">
-                        {{#slides}}
-                            <div class="carousel-item {{#active}}active{{/active}}">
-                                <img src="{{image}}" alt="{{slidertitle}}" class="w-100">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5 class="title">{{{title}}}</h5>
-                                    <div class="caption">
-                                        {{{caption}}}
-                                    </div>
-                                </div>
-                            </div>
-                        {{/slides}}
-                    </div>
-                    <a class="carousel-control-prev" href="#carousel-indicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">{{#str}}previous{{/str}}</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carousel-indicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">{{#str}}next{{/str}}</span>
-                    </a>
-                </div>
-            </div>
-        {{/slidercount}}
+                         <!-- About -->
+                         <section class="page-section bg-light" id="team">
+                             <div class="container">
+                                 <div class="text-center">
+                                     <h2 class="section-heading text-uppercase">About PACCS</h2>
+                                     <h3 class="section-subheading text-muted"></h3>
+                                 </div>
+                                 <div class="row">
+                                     <div class="col-lg-4">
+                                         <div class="team-member">
+                                             <img class="mx-auto rounded-circle"
+                                                 src="{{config.wwwroot}}/custom/template/assets/img/team/1.jpg"
+                                                 alt="..." />
+                                             <h4>COL JOEY T FONTIVEROS SC (GSC) PA</h4>
+                                             <p class="text-muted">Deputy Regiment Commander</p>
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-4">
+                                         <div class="team-member">
+                                             <img class="mx-auto rounded-circle" src="{{config.wwwroot}}/COL-PAPA.png"
+                                                 alt="..." />
+                                             <h4>COL ALEJANDRO JAVIER PAPA (MNSA) PA</h4>
+                                             <p class="text-muted">Regiment Commander</p>
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-4">
+                                         <div class="team-member">
+                                             <img class="mx-auto rounded-circle"
+                                                 src="{{config.wwwroot}}/custom/template/assets/img/team/3.jpg"
+                                                 alt="..." />
+                                             <h4>MAJ RODRIGO F QUINTO (GSC) PA</h4>
+                                             <p class="text-muted">CO, Cyber Battalion</p>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="row">
+                                     <div>
+                                         <p class="large text-muted">It was the idea of <b>COLONEL ALEJANDRO JAVIER PAPA
+                                                 (MNSA) PA </b>, Commander, Army Signal Regiment, to create the
+                                             Philippine Army Cybersecurity Clearance System (PACCS) to consistently
+                                             improve the security of the Philippine Army Cyberspace by updating the
+                                             Process, enhancing the Technology, and educating army personnel is one of
+                                             his first instructions upon assumption as the Commander of Army Signal
+                                             Regiment. The PA Cyber Security Clearance System aims to verify the
+                                             successful candidate's knowledge and skills required to operate the
+                                             organization's cyber assets, maintain a secured network, and leverage the
+                                             personnel standard in computer and cybersecurity literacy with the
+                                             intention of actively defending and constantly enhancing the security of
+                                             the Philippine Army Cyberspace. The Cyber Battalion has been tasked to
+                                             develop a cybersecurity clearance system that will help ensure all army
+                                             personnel, both military and civilian, are up to date on the most recent
+                                             information technology and cybersecurity trends.</p>
+                                     </div>
+                                 </div>
+                             </div>
+                         </section>
+                         <!-- Footer-->
+                         <footer class="footer py-4" style="background-color:#cca000">
+                             <div class="container">
+                                 <div class="row align-items-center">
+                                     <div class="col-lg-4 text-lg-start">Developed by Cyber Battalion</div>
+                                     <div class="col-lg-4 my-3 my-lg-0">
+                                         {{! <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> }}
+                                     </div>
+                                     <div class="col-lg-4 text-lg-end">
+                                         <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                                         <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                                     </div>
+                                 </div>
+                             </div>
+                         </footer>
 
-        {{#displaymarketingbox}}
-            <section id="feature">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4 my-3">
-                            <h3 class="h1 mt-3 mb-3">{{{marketingheading}}}</h3>
-                            <div class="marketing-content">{{{marketingcontent}}}</div>
-                        </div>
-                        <div class="col-lg-8 ps-xl-8">
-                            <div class="row">
-                                {{#marketingboxes}}
-                                    <div class="col-sm-6 mt-4">
-                                        <div class="card card-body shadow">
-                                            <div class="d-flex">
-                                                <div class="icon-lg text-white rounded-circle">
-                                                    <img src="{{{icon}}}">
-                                                </div>
-                                                <div class="col ps-3">
-                                                    <h5>{{{heading}}}</h5>
-                                                    <div class="box-content">{{{content}}}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {{/marketingboxes}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        {{/displaymarketingbox}}
+                         <!-- Bootstrap core JS-->
+                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
+                         </script>
+                         <!-- Core theme JS-->
+                         <script src="{{config.wwwroot}}/custom/template/js/scripts.js"></script>
+                         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+                     </body>
 
-        {{#numbersfrontpage}}
-            <section id="numbers">
-                <div class="moove-container-fluid">
-                    <div class="row customer-area-l1 justify-content-center align-items-center ">
-                        <div class="col-xl-5 col-lg-5 col-md-10">
-                            <div class="sectionheading">
-                                {{{numberscontent}}}
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-lg-7 col-md-10 offset-xl-1">
-                            <div class="row user-rating-box-area">
-                                <div class="col-sm-6 col-xs-8">
-                                    <div class="h-100 rate-box bg-primary">
-                                        <h3>
-                                            {{{numbersusers}}}
-                                        </h3>
-                                        <p>{{#str}}numbersusers, theme_moove{{/str}}</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xs-8">
-                                    <div class="h-100 rate-box rate-box-2 bg-cloudburst">
-                                        <h3>
-                                            {{{numberscourses}}}
-                                        </h3>
-                                        <p>{{#str}}numberscourses, theme_moove{{/str}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        {{/numbersfrontpage}}
-
-        <div id="topofscroll">
-            <div id="page-content" class="d-print-block main-inner">
-                <div id="region-main-box">
-                    <section id="region-main" aria-label="{{#str}}content{{/str}}">
-                        {{{ output.course_content_header }}}
-                        {{{ output.main_content }}}
-                        {{{ output.course_content_footer }}}
-                    </section>
-                </div>
-            </div>
-        </div>
-
-        {{#faqenabled}}
-            <section id="faq" class="scale-up scale-up-show">
-                <div class="moove-container-fluid">
-                    <h2>{{#str}}faq, theme_moove{{/str}}</h2>
-
-                    <div class="accordion" id="accordionFaq">
-                        {{#faq}}
-                            <div class="card shadow">
-                                <div class="card-header" id="heading-{{{id}}}">
-                                    <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-{{{id}}}" aria-expanded="false" aria-controls="collapse-{{{id}}}">
-                                            {{{question}}}
-                                        </button>
-                                    </h2>
-                                </div>
-
-                                <div id="collapse-{{{id}}}" class="collapse" aria-labelledby="heading-{{{id}}}" data-parent="#accordionFaq">
-                                    <div class="card-body">
-                                        {{{answer}}}
-                                    </div>
-                                </div>
-                            </div>
-                        {{/faq}}
-                    </div>
-                </div>
-            </section>
-        {{/faqenabled}}
-
-        {{> theme_moove/footer }}
-    </div>
-    {{{ output.standard_after_main_region_html }}}
-</div>
-
-</body>
-</html>
-{{#js}}
-M.util.js_pending('theme_boost/loader');
-require(['theme_boost/loader', 'theme_boost/drawer'], function(Loader, Drawer) {
-    Drawer.init();
-    M.util.js_complete('theme_boost/loader');
-});
-{{/js}}
+                     </html>
