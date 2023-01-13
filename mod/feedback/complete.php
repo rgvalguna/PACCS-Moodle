@@ -27,6 +27,8 @@ require_once("lib.php");
 
 feedback_init_feedback_session();
 
+
+
 $id = required_param('id', PARAM_INT);
 $courseid = optional_param('courseid', null, PARAM_INT);
 $gopage = optional_param('gopage', 0, PARAM_INT);
