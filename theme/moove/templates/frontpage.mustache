@@ -1,0 +1,212 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_moove/drawers
+
+    Boost drawer template.
+
+    Context variables required for this template:
+    * sitename - The name of the site
+    * output - The core renderer for the page
+    * bodyattributes - attributes for the body tag as a string of html attributes
+    * sidepreblocks - HTML for the blocks
+    * hasblocks - true if there are blocks on this page
+    * courseindexopen - true if the nav drawer should be open on page load
+    * regionmainsettingsmenu - HTML for the region main settings menu
+    * hasregionmainsettingsmenu - There is a region main settings menu on this page.
+
+    Example context (json):
+    {
+        "sitename": "Moodle",
+        "output": {
+            "doctype": "<!DOCTYPE html>",
+            "page_title": "Test page",
+            "favicon": "favicon.ico",
+            "main_content": "<h1>Headings make html validators happier</h1>"
+         },
+        "bodyattributes":"",
+        "sidepreblocks": "<h2>Blocks html goes here</h2>",
+        "hasblocks":true,
+        "courseindexopen": true,
+        "navdraweropen": false,
+        "blockdraweropen": true,
+        "regionmainsettingsmenu": "",
+        "hasregionmainsettingsmenu": false,
+        "addblockbutton": ""
+    }
+}}
+                     <div style="display:none;"> {{{ output.main_content }}}</div>
+
+                     <!DOCTYPE html>
+                     <html lang="en">
+
+                     {{! <head>
+                         <meta charset="utf-8" />
+                         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                         <meta name="description" content="" />
+                         <meta name="author" content="" />
+                         <title>Philippine Army Preliminary Assessment in Cybersecurity System | PAPACS</title>
+                         <!-- Favicon-->
+                         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+                         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous">
+                         </script> }}
+
+                         <!-- Google fonts-->
+                          {{> theme_moove/head }}
+                           <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"
+                             type="text/css" />
+                         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+                             rel="stylesheet" type="text/css" />
+                         <link href="{{config.wwwroot}}/custom/template/css/styles.css" rel="stylesheet" />
+                        
+            
+                     <body id="page-top">
+                         <!-- Masthead-->
+                         <header class="masthead" style="padding-top: 36rem;">
+                             <div class="container">
+
+                                <video autoplay muted loop>
+                                    <source src="{{config.wwwroot}}\theme\moove\uploads\videohome.mp4" type="video/mp4" />
+                        
+                                  </video>
+                                  <a class="btn btn-primary btn-xl text-uppercase" 
+                                     href="{{config.wwwroot}}/login">Login</a>
+                                 {{! <div class="masthead-subheading" >Army Signal Regiment</div>
+                <div class="masthead-heading text-uppercase">Secure Your Future!</div> }}
+                                
+                             </div>
+                         </header>
+                         
+                         <!-- Services-->
+                         {{! <section class="page-section" id="services">
+                             <div class="container">
+                                 <div class="text-center">
+                                     <h2 class="section-heading text-uppercase">Services</h2>
+                                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.
+                                     </h3>
+                                 </div>
+                                 <div class="row text-center">
+                                     <div class="col-md-4">
+                                         <span class="fa-stack fa-4x">
+                                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                                         </span>
+                                         <h4 class="my-3">E-Commerce</h4>
+                                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                             Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
+                                         </p>
+                                     </div>
+                                     <div class="col-md-4">
+                                         <span class="fa-stack fa-4x">
+                                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                                         </span>
+                                         <h4 class="my-3">Responsive Design</h4>
+                                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                             Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
+                                         </p>
+                                     </div>
+                                     <div class="col-md-4">
+                                         <span class="fa-stack fa-4x">
+                                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                             <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                                         </span>
+                                         <h4 class="my-3">Web Security</h4>
+                                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                             Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
+                                         </p>
+                                     </div>
+                                 </div>
+                             </div>
+                         </section> }}
+
+                         <!-- About -->
+                         <section class="page-section bg-light" id="team">
+                             <div class="container">
+                                 <div class="text-center">
+                                     <h2 class="section-heading text-uppercase">About PAPACS</h2>
+                                     <h3 class="section-subheading text-muted"></h3>
+                                 </div>
+                                 <div class="row">
+                                     <div class="col-lg-2">
+                                         <div class="team-member">
+                                             
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-8">
+                                         <div class="team-member">
+                                             <img class="mx-auto rounded-circle"
+                                                 src="{{config.wwwroot}}\theme\moove\uploads\img\COL PAPA.jpg"
+                                                 alt="..." />
+                                             <h4>COL ALEJANDRO JAVIER PAPA (MNSA) PA</h4>
+                                             <p class="text-muted">Regiment Commander</p>
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-2">
+                                         <div class="team-member">
+                                             
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="row">
+                                     <div>
+                                         <p class="large text-muted" style="text-align:justify">It was the idea of <b>COLONEL ALEJANDRO JAVIER PAPA
+                                                 (MNSA) PA </b>, Commander, Army Signal Regiment, to create the
+                                             Philippine Army Preliminary Assessment Cybersecurity System (PAPACS) to consistently
+                                             improve the security of the Philippine Army Cyberspace by updating the
+                                             Process, enhancing the Technology, and educating army personnel is one of
+                                             his first instructions upon assumption as the Commander of Army Signal
+                                             Regiment. The system aims to verify the successful candidate's knowledge and 
+                                             skills required to operate the
+                                             organization's cyber assets, maintain a secured network, and leverage the
+                                             personnel standard in computer and cybersecurity literacy with the
+                                             intention of actively defending and constantly enhancing the security of
+                                             the Philippine Army Cyberspace. The Cyber Battalion has been tasked to
+                                             develop a cybersecurity clearance system that will help ensure all army
+                                             personnel, both military and civilian, are up to date on the most recent
+                                             information technology and cybersecurity trends.</p>
+                                     </div>
+                                 </div>
+                             </div>
+                         </section>
+                         <!-- Footer-->
+                         <footer class="footer py-4" style="background-color:#cca000">
+                             <div class="container">
+                                 <div class="row align-items-center">
+                                     <div class="col-lg-4 text-lg-start">Developed by Cyber Battalion</div>
+                                     <div class="col-lg-4 my-3 my-lg-0">
+                                         {{! <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> }}
+                                     </div>
+                                     <div class="col-lg-4 text-lg-end">
+                                         <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
+                                         <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
+                                     </div>
+                                 </div>
+                             </div>
+                         </footer>
+
+                         <!-- Bootstrap core JS-->
+                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
+                         </script>
+                         <!-- Core theme JS-->
+                         <script src="{{config.wwwroot}}/custom/template/js/scripts.js"></script>
+                         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+                     </body>
+
+                     </html>
