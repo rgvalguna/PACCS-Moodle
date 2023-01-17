@@ -108,12 +108,7 @@
                                 </a>
                             </li>
                         {{/mail}}
-                    </ul>
-                </div>
 
-                <div class="socialnetworks">
-                    
-                    <ul class="mb-0">
                         {{#facebook}}
                             <li>
                                 <a href="{{{facebook}}}" target="_blank" class="facebook btn btn-link btn-rounded">
@@ -121,6 +116,21 @@
                                 </a>
                             </li>
                         {{/facebook}}
+
+                        {{#telegram}}
+                        <li>
+                            <a href="{{{telegram}}}" target="_blank" class="telegram btn btn-link btn-rounded">
+                                <i class="fa fa-telegram"></i>
+                            </a>
+                        </li>
+                        {{/telegram}}
+                    </ul>
+                </div>
+
+                <div class="socialnetworks">
+                    
+                    <ul class="mb-0">
+                        
 
                         {{#twitter}}
                             <li>
@@ -162,13 +172,7 @@
                             </li>
                         {{/whatsapp}}
 
-                        {{#telegram}}
-                            <li>
-                                <a href="{{{telegram}}}" target="_blank" class="telegram btn btn-link btn-rounded">
-                                    <i class="fa fa-telegram"></i>
-                                </a>
-                            </li>
-                        {{/telegram}}
+                    
                     </ul>
                 </div>
             </div>
