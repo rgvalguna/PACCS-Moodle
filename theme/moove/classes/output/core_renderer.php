@@ -316,13 +316,18 @@ class core_renderer extends \theme_boost\output\core_renderer
         }
 
         //Dashboard Carousel
-
         if ($contextheader->heading == "Dashboard") {
             $protocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
-            $heading = '<h1 class="h2">' . $contextheader->heading . '</h1>
+            $heading = '
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-              <div class="carousel-item active">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="' . $protocol . '://' . $_SERVER['HTTP_HOST'] . '/papacs/theme/moove/uploads/img/carousel5.jpg" alt="First slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="' . $protocol . '://' . $_SERVER['HTTP_HOST'] . '/papacs/theme/moove/uploads/img/carousel6.jpg" alt="First slide">
+              </div>
+              <div class="carousel-item">
                 <img class="d-block w-100" src="' . $protocol . '://' . $_SERVER['HTTP_HOST'] . '/papacs/theme/moove/uploads/img/carousel.jpg" alt="First slide">
               </div>
               <div class="carousel-item">
@@ -343,10 +348,16 @@ class core_renderer extends \theme_boost\output\core_renderer
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
-          </div> ';
+          </div> 
+          ';
         }
-   
+        
         $html .= html_writer::tag('div', $heading, array('class' => 'page-header-headings'));
+
+    //     if(isset($_POST)&&$contextheader->heading == "Dashboard"){
+
+            
+    //    }
 
         // Buttons.
         if (isset($contextheader->additionalbuttons)) {
@@ -376,7 +387,7 @@ class core_renderer extends \theme_boost\output\core_renderer
             $html .= html_writer::end_div();
         }
         $html .= html_writer::end_div();
-
+    
         return $html;
     }
 
@@ -485,7 +496,6 @@ class core_renderer extends \theme_boost\output\core_renderer
                 }
             }
         }
-
         return $output;
     }
 }

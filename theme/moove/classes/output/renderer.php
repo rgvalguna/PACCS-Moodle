@@ -22,8 +22,12 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 namespace theme_moove\output;
+var_dump('test');
+
+defined('MOODLE_INTERNAL') || die();
 
 use plugin_renderer_base;
+use renderable;
 
 /**
  * Theme renderer
@@ -33,4 +37,9 @@ use plugin_renderer_base;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class renderer extends plugin_renderer_base {
+
+   public function render_context_header(renderable $output){
+    return $output;
+   }
+    
 }
