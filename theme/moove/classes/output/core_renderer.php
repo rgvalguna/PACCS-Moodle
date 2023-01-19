@@ -316,36 +316,11 @@ class core_renderer extends \theme_boost\output\core_renderer
         }
 
         //Dashboard Carousel
-
-        if ($contextheader->heading == "Dashboard") {
-            $protocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
-            $heading = '<h1 class="h2">' . $contextheader->heading . '</h1>
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img class="d-block w-100" src="' . $protocol . '://' . $_SERVER['HTTP_HOST'] . '/papacs/theme/moove/uploads/img/carousel.jpg" alt="First slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="' . $protocol . '://' . $_SERVER['HTTP_HOST'] . '/papacs/theme/moove/uploads/img/carousel1.jpg" alt="Second slide">
-              </div>
-              <div class="carousel-item">
-             <img class="d-block w-100" src="' . $protocol . '://' . $_SERVER['HTTP_HOST'] . '/papacs/theme/moove/uploads/img/carousel2.jpg" alt="Second slide">
-              </div>
-              <div class="carousel-item">
-             <img class="d-block w-100" src="' . $protocol . '://' . $_SERVER['HTTP_HOST'] . '/papacs/theme/moove/uploads/img/carousel3.jpg" alt="Second slide">
-              </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div> ';
+        $dashboard = "/dashboard/i";
+        if (preg_match($dashboard, $contextheader->heading)) {
+                $heading = $this->render_from_template('core/corousel','');   
         }
-   
+
         $html .= html_writer::tag('div', $heading, array('class' => 'page-header-headings'));
 
         // Buttons.
@@ -381,7 +356,7 @@ class core_renderer extends \theme_boost\output\core_renderer
     }
 
     /**
-     * Returns standard navigation between activities in a course.
+     * Returns standard navigation betFen activities in a course.
      *
      * @return string the navigation HTML.
      */
@@ -471,7 +446,7 @@ class core_renderer extends \theme_boost\output\core_renderer
     public function get_navbar_callbacks_data()
     {
         $callbacks = get_plugins_with_function('moove_additional_header', 'lib.php');
-
+        $html .= html_writer::div('anonymous');
         if (!$callbacks) {
             return '';
         }
@@ -485,7 +460,6 @@ class core_renderer extends \theme_boost\output\core_renderer
                 }
             }
         }
-
         return $output;
     }
 }

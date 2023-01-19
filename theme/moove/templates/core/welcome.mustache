@@ -21,9 +21,13 @@
 
     Example context (json):
     {
-        "welcomemessage": "welcomemessage"
+        "welcomemessage": "welcomemessage",
+        "corousel":"corousel"
     }
 }}
 {{#welcomemessage}}
+<div class="page-header-headings">
     <h2>{{.}}</h2>
+        {{>core/corousel}}
+</div>
 {{/welcomemessage}}
