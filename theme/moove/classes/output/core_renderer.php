@@ -351,7 +351,7 @@ class core_renderer extends \theme_boost\output\core_renderer
             $html .= html_writer::end_div();
         }
         $html .= html_writer::end_div();
-
+    
         return $html;
     }
 
