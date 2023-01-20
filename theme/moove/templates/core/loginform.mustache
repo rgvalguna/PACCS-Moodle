@@ -94,12 +94,12 @@
 }}
 <div class="loginform row {{#hastwocolumns}}hastwocolumns{{/hastwocolumns}}">
     <div class="{{#hastwocolumns}}col-lg-6 col-md-12 left-column{{/hastwocolumns}}{{^hastwocolumns}}col{{/hastwocolumns}}">
-        {{#logourl}}
+        {{! {{#logourl}}
             <div id="loginlogo" class="login-logo" style="justify-content:center;">
                 <img id="logoimage" src="{{config.wwwroot}}/theme/moove/uploads/asr-logo.png" class="img-fluid" alt="Philippine Army Preliminary Assessment in Cybersecurity System"/ style="width:200px;height:200px;">
                 <h1 class="login-heading sr-only">{{#str}} loginto, core, {{sitename}} {{/str}}</h1>
             </div>
-        {{/logourl}}
+        {{! {{/logourl}}
         {{^logourl}}
             <h1 class="login-heading mb-4">{{#str}} loginto, core, {{sitename}} {{/str}}</h1>
         {{/logourl}}
