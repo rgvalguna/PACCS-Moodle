@@ -56,6 +56,11 @@ class login_signup_form extends moodleform implements renderable, templatable {
         $mform->addRule('email', get_string('missingemail'), 'required', null, 'client');
         $mform->setForceLtr('email');
 
+        $mform->addElement('text', 'email2', get_string('emailagain'), 'maxlength="100" size="25"');
+        $mform->setType('email2', core_user::get_property_type('email'));
+        $mform->addRule('email2', get_string('missingemail'), 'required', null, 'client');
+        $mform->setForceLtr('email2');
+
          
         $namefields = useredit_get_required_name_fields();
         foreach ($namefields as $field) {
