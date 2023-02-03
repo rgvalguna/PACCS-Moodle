@@ -197,6 +197,8 @@ class auth_plugin_email extends auth_plugin_base {
                 $roleid = 5;
                 $enrolperson = $DB -> get_record('enrol',array('courseid'=>$targetcourseid,'enrol'=>'manual'));
                 $plugin->enrol_user($enrolperson,$user->id, $roleid,$targetcourseid);
+                $plugin->enrol_user($enrolperson,$user->id, $roleid,3);
+                $plugin->enrol_user($enrolperson,$user->id, $roleid,4);
                 //end of custom Auto enrollment
                 return AUTH_CONFIRM_OK;
             }
