@@ -95,7 +95,6 @@ function local_custom_registration_get_additional_fields() {
 function local_custom_registration_extend_signup_form($mform) {
 
     $additional_fields = local_custom_registration_get_additional_fields();
-
     foreach ($additional_fields as $field_name => $field) {
         if (get_config('local_custom_registration',  'enable_' . $field_name)) {
             if (isset($field['values'])) {
@@ -134,7 +133,6 @@ function local_custom_registration_validate_extend_signup_form($datas) {
  */
 function local_custom_registration_post_signup_requests($datas) {
     $added_fields = array_keys(local_custom_registration_get_additional_fields());
-
     foreach ($added_fields as $field) {
         $real_field = str_replace('custom_', '', $field);
         // Handle our added fields

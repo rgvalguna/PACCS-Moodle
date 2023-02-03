@@ -25,6 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir.'/authlib.php');
+require_once($CFG->libdir.'/enrollib.php');
 
 /**
  * Email authentication plugin.
@@ -189,7 +190,14 @@ class auth_plugin_email extends auth_plugin_base {
                     $SESSION->wantsurl = $wantsurl;
                     unset_user_preference('auth_email_wantsurl', $user);
                 }
-
+                
+                //custom autoenrol for PAPACS
+                $plugin = enrol_get_plugin('manual');
+                $targetcourseid = 2;//PAPACS EXAM Course ID
+                $roleid = 5;
+                $enrolperson = $DB -> get_record('enrol',array('courseid'=>$targetcourseid,'enrol'=>'manual'));
+                $plugin->enrol_user($enrolperson,$user->id, $roleid,$targetcourseid);
+                //end of custom Auto enrollment
                 return AUTH_CONFIRM_OK;
             }
         } else {
