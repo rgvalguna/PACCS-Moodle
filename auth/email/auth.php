@@ -194,11 +194,18 @@ class auth_plugin_email extends auth_plugin_base {
                 //custom autoenrol for PAPACS
                 $plugin = enrol_get_plugin('manual');
                 $targetcourseid = 2;//PAPACS EXAM Course ID
-                $roleid = 5;
+                $papacsPolicies = 4;
+                $papacsTraining = 3;
+                $roleid = 5; //student
+                //enroll PAPACS EXAM
                 $enrolperson = $DB -> get_record('enrol',array('courseid'=>$targetcourseid,'enrol'=>'manual'));
                 $plugin->enrol_user($enrolperson,$user->id, $roleid,$targetcourseid);
-                $plugin->enrol_user($enrolperson,$user->id, $roleid,3);
-                $plugin->enrol_user($enrolperson,$user->id, $roleid,4);
+                //enroll PAPACS Training Materials
+                $enroltraining = $DB -> get_record('enrol',array('courseid'=>$papacsTraining,'enrol'=>'manual'));
+                $plugin->enrol_user($enroltraining, $user->id, $roleid, $papacsTraining);
+                //enroll PAPACS Policies
+                $enrolpolicies = $DB -> get_record('enrol',array('courseid'=>$papacsPolicies,'enrol'=>'manual'));
+                $plugin->enrol_user($enrolpolicies, $user->id, $roleid, $papacsPolicies);
                 //end of custom Auto enrollment
                 return AUTH_CONFIRM_OK;
             }
