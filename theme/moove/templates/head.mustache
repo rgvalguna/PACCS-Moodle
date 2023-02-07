@@ -81,6 +81,41 @@
   display:none 
 }
 
+#background-video {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: -1;
+ 
+ 
+}
 
+#loginbutton {
+ 
+  position: absolute;
+
+ 
+}
+
+@media (max-width: 800px) {
+    #background-video { display: none; }
+    body {
+      background: url("{{config.wwwroot}}/theme/moove/uploads/img/CAROUSEL8.jpg") no-repeat;
+      background-size: 100% auto; 
+      background-position:top;
+      
+    }
+
+    .masthead {
+
+        padding-top: 150px!important;
+    }
+
+    .btn-xl{
+        padding: 0.5rem!important;
+    }
+
+ 
+}
 
 </style>
