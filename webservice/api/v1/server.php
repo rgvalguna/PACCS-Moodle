@@ -45,6 +45,9 @@ $url = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/papacs/webservic
 $request_uri = $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $url_components = parse_url($request_uri);
 $result = [];
+$completion = [];
+$final_result = [];
+$json = [];
 
 /**
  * Get User Completion
@@ -55,21 +58,39 @@ if ($_GET['papacs_function'] == 'core_completion_get_course_completion_status'){
     (new MoodleRest())->setServerAddress($url)->
     setToken($_GET['papacs_token'])->
     setReturnFormat(MoodleRest::RETURN_JSON)->completion('core_completion_get_course_completion_status', $params);
-
 $result = $json;
 }
 
 /**
- * Get User Information
+ * Get User Information with completion status of PAPACS Student
  */
 if ($_GET['papacs_function'] == 'core_user_get_users_by_field'){
     parse_str($url_components['query'], $params);
+    //Get User Info First
     $json =
     (new MoodleRest())->setServerAddress($url)->
     setToken($_GET['papacs_token'])->
     setReturnFormat(MoodleRest::RETURN_JSON)->papacs_user('core_user_get_users_by_field', $params);
-
-$result = $json;
+    $json = json_decode($json, false);
+    //completion status of papacs student
+    $com_params = [
+        'userid' => $json[0]->id,
+        'courseid' => 2,//PAPACS EXAM CODE
+    ];
+    $completion = 
+    (new MoodleRest())->setServerAddress($url)->
+    setToken($_GET['papacs_token'])->
+    setReturnFormat(MoodleRest::RETURN_JSON)->completion('core_completion_get_course_completion_status',  $com_params);
+    $completion = json_decode($completion, false);
+    $final_result = [
+        'userid' => $json[0]->id,
+        'username' => $json[0]->username,
+        'firstname' => $json[0]->firstname,
+        'lastname' => $json[0]->lastname,
+        'email' => $json[0]->email,
+        'completion_status' => $completion->completionstatus,
+    ];
+    $result = json_encode($final_result);
 }
 
 echo $result;
