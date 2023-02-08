@@ -26,6 +26,10 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir.'/authlib.php');
 require_once($CFG->libdir.'/enrollib.php');
+require_once($CFG->dirroot.'/local/papacs_telegram/TelegramBotPHP/telegram.php');
+define('TELEGRAM_TOKEN', '6163000440:AAEKIj0yxnPOkSV-dlOg_Uol977ULAmS1AQ');//PAPACS Bot Token
+define('CHAT_ID', '-703429874');//PAPACS Customer Support Group ID
+
 
 /**
  * Email authentication plugin.
@@ -139,8 +143,28 @@ class auth_plugin_email extends auth_plugin_base {
         // Trigger event.
         \core\event\user_created::create_from_userid($user->id)->trigger();
 
+        //PAPACS Notification if User has Registered
+        $telegram = new Telegram(TELEGRAM_TOKEN);
+        $message = "
+Notification Message 📩:
+A new user is awaiting for Admin confirmation?
+Please confirm immediately!
+Details: 
+Username: {$user->username}
+Email: {$user->email}
+First Name: {$user->firstname}
+Last Name: {$user->lastname}
+Note: This is a auto generated notifications from PAPACS Administrator.Thank you.🫡
+        ";
+        $userMessage = "
+<h3>Notification Message 📩:</h3>\n
+<p>Thank you for Registering at <b>Philippine Army Preliminary Assessment in Cybersecurity System (PAPACS)</b>.
+Please wait for the Administrator Representative to activate your account🫡🫡🫡.</p>\n";
+        $content = ['chat_id' => CHAT_ID, 'text' => $message];
+        $telegram->sendMessage($content);
+
         if (! send_confirmation_email($user, $confirmationurl)) {
-            print_error('auth_emailnoemail', 'auth_email');
+            // print_error('auth_emailnoemail', 'auth_email');
         }
 
         if ($notify) {
@@ -150,7 +174,8 @@ class auth_plugin_email extends auth_plugin_base {
             $PAGE->set_title($emailconfirm);
             $PAGE->set_heading($PAGE->course->fullname);
             echo $OUTPUT->header();
-            notice(get_string('emailconfirmsent', '', $user->email), "$CFG->wwwroot/index.php");
+            // notice(get_string('emailconfirmsent', '', $user->email), "$CFG->wwwroot/index.php");
+            notice($userMessage, "$CFG->wwwroot/index.php");
         } else {
             return true;
         }
@@ -206,7 +231,20 @@ class auth_plugin_email extends auth_plugin_base {
                 //enroll PAPACS Policies
                 $enrolpolicies = $DB -> get_record('enrol',array('courseid'=>$papacsPolicies,'enrol'=>'manual'));
                 $plugin->enrol_user($enrolpolicies, $user->id, $roleid, $papacsPolicies);
-                //end of custom Auto enrollment
+                //PAPACS Notification if User has Registered
+                $telegram = new Telegram(TELEGRAM_TOKEN);
+                $message = "
+Notification Message 📩:
+A new user has already been confirmed.
+Details: 
+    Username: {$user->username}
+    Email: {$user->email}
+    First Name: {$user->firstname}
+    Last Name: {$user->lastname}
+Note: This is a auto generated notifications from PAPACS Administrator.Thank you.🫡
+                ";
+                $content = ['chat_id' => CHAT_ID, 'text' => $message];
+                $telegram->sendMessage($content);
                 return AUTH_CONFIRM_OK;
             }
         } else {
