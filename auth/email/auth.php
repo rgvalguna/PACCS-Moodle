@@ -220,7 +220,7 @@ Please wait for the Administrator Representative to activate your accountðŸ«¡ðŸ«
                 $plugin = enrol_get_plugin('manual');
                 $targetcourseid = 2;//PAPACS EXAM Course ID
                 $papacsPolicies = 4;
-                $papacsTraining = 3;
+                $papacsTraining = 6;
                 $roleid = 5; //student
                 //enroll PAPACS EXAM
                 $enrolperson = $DB -> get_record('enrol',array('courseid'=>$targetcourseid,'enrol'=>'manual'));
