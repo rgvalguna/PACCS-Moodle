@@ -23,6 +23,7 @@
  */
 
 require_once('../../config.php');
+require_once("$CFG->libdir/completionlib.php");
 
 $id = required_param('id', PARAM_INT);
 $downloadown = optional_param('downloadown', false, PARAM_BOOL);
@@ -46,6 +47,14 @@ require_capability('mod/customcert:view', $context);
 $canreceive = has_capability('mod/customcert:receiveissue', $context);
 $canmanage = has_capability('mod/customcert:manage', $context);
 $canviewreport = has_capability('mod/customcert:viewreport', $context);
+//get the user grade
+$papacs_exam_course_ID = 2; //The PAPACS Exam course ID
+$course = get_course($papacs_exam_course_ID);
+$info = new completion_info($course);
+$completions =  $info->is_course_complete($id);
+if(!$completions){
+    $canreceive = false;//PAPACS User cant view and download the Certificate if not Passed the Passing Criteria
+}
 
 // Initialise $PAGE.
 $pageurl = new moodle_url('/mod/customcert/view.php', array('id' => $cm->id));
