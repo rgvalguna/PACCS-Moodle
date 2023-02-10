@@ -51,12 +51,18 @@ $canviewreport = has_capability('mod/customcert:viewreport', $context);
 $papacs_exam_course_ID = 2; //The PAPACS Exam course ID
 $course = get_course($papacs_exam_course_ID);
 $info = new completion_info($course);
-$grades = $info->get_completions($id);
+$grades = $info->get_completions($USER->id);
+// Load course completion.
+$completionparams = array(
+    'userid' => $USER->id,
+    'course' => $papacs_exam_course_ID,
+);
+$ccompletion = new completion_completion($completionparams);
 $requirement_grade = 0;
 $status_grade = 0;
 if (!empty($grades)) {
     $completionrows = array();
-    $completions =  $info->is_course_complete($id);
+    $completions =  $info->is_course_complete($USER->id);
     $completionrow = array();
     foreach ($grades as $grade) {
         $criteria = $grade->get_criteria();
@@ -68,6 +74,8 @@ if (!empty($grades)) {
         $completionrow['details'] = $criteria->get_details($grade);
         $completionrows[] =  $completionrow;
     }
+    // $resultkrb = grade_get_course_grades($papacs_exam_course_ID, $USER->id);
+    // $grd = $resultkrb->grades[$USER->id]; 
     //get the PAPACS Course grade
     foreach ($completionrows as $course_grade){
         if($course_grade['details']['type'] == 'Course grade'){
