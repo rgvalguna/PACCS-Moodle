@@ -47,15 +47,39 @@ require_capability('mod/customcert:view', $context);
 $canreceive = has_capability('mod/customcert:receiveissue', $context);
 $canmanage = has_capability('mod/customcert:manage', $context);
 $canviewreport = has_capability('mod/customcert:viewreport', $context);
-//get the user grade
+//get the user grade of PAPACS
 $papacs_exam_course_ID = 2; //The PAPACS Exam course ID
 $course = get_course($papacs_exam_course_ID);
 $info = new completion_info($course);
-$completions =  $info->is_course_complete($id);
-if(!$completions){
-    $canreceive = false;//PAPACS User cant view and download the Certificate if not Passed the Passing Criteria
+$grades = $info->get_completions($id);
+$requirement_grade = 0;
+$status_grade = 0;
+if (!empty($grades)) {
+    $completionrows = array();
+    $completions =  $info->is_course_complete($id);
+    $completionrow = array();
+    foreach ($grades as $grade) {
+        $criteria = $grade->get_criteria();
+        $completionrow['type'] = $criteria->criteriatype;
+        $completionrow['title'] = $criteria->get_title();
+        $completionrow['status'] = $grade->get_status();
+        $completionrow['complete'] = $grade->is_complete();
+        $completionrow['timecompleted'] = $grade->timecompleted;
+        $completionrow['details'] = $criteria->get_details($grade);
+        $completionrows[] =  $completionrow;
+    }
+    //get the PAPACS Course grade
+    foreach ($completionrows as $course_grade){
+        if($course_grade['details']['type'] == 'Course grade'){
+            $requirement_grade = $course_grade['details']['requirement'];
+            $status_grade = !empty($course_grade['details']['status']) ?  $course_grade['details']['status'] :  0 ;
+            if($requirement_grade >= $status_grade){ //Set PAPACS Passing Score
+                $canreceive = false;//PAPACS User cant view and download the Certificate if not Passed the Passing Criteria
+            }
+        }
+    }
+    
 }
-
 // Initialise $PAGE.
 $pageurl = new moodle_url('/mod/customcert/view.php', array('id' => $cm->id));
 \mod_customcert\page_helper::page_setup($pageurl, $context, format_string($customcert->name));
@@ -83,7 +107,6 @@ if ($deleteissue && $canmanage && confirm_sesskey()) {
                 'sesskey' => sesskey()
             ]
         );
-
         // Show a confirmation page.
         $PAGE->navbar->add(get_string('deleteconfirm', 'customcert'));
         $message = get_string('deleteissueconfirm', 'customcert');
@@ -146,8 +169,17 @@ if (!$downloadown && !$downloadissue) {
         $downloadbutton = new single_button($link, $linkname, 'get', true);
         $downloadbutton->class .= ' m-b-1';  // Seems a bit hackish, ahem.
         $downloadbutton = $OUTPUT->render($downloadbutton);
+    }else{
+        $linkname = get_string('getcustomcert', 'customcert');
+        $link = new moodle_url('/course/view.php', array('id' => $papacs_exam_course_ID));
+        $downloadbutton = new single_button($link, $linkname, 'get', true);
+        $downloadbutton->class .= ' m-b-3 red';  // Seems a bit hackish, ahem.
+        $downloadbutton->label = 'RETAKE PAPACS EXAMINATION!';
+        $issuehtml = "<h4>Sorry, You Failed the PAPACS Examination. Your Score is: {$status_grade}, and the Passing Score is:{$requirement_grade}..</h4>\n";
+        $downloadbutton = $OUTPUT->render($downloadbutton);
     }
-
+   
+    
     // Output all the page data.
     echo $OUTPUT->header();
     echo $issuehtml;
