@@ -11,6 +11,8 @@
  * @link       http://github.com/llagerlof/MoodleRest
  * @license    https://opensource.org/licenses/MIT MIT
  */
+ defined('MOODLE_INTERNAL') || die();
+ require_once("$CFG->libdir/completionlib.php");
 class MoodleRest
 {
     /**
@@ -54,6 +56,7 @@ class MoodleRest
      * @access private
      */
     private $token;
+    private $user;
 
     /**
      * The return format (json, xml, array)
@@ -169,6 +172,12 @@ class MoodleRest
     public function getToken()
     {
         return $this->token;
+    }
+
+    public function getUser($user)
+    {
+         $this->user = $user;
+         return $this;
     }
 
     /**
@@ -654,5 +663,49 @@ class MoodleRest
         }
 
         return $this->getData();
+    }
+
+    
+
+
+
+    //papacs user activity completion
+    public function papacs_status( $method = self::METHOD_GET)
+    {  
+        
+        if (empty($this->token)) {
+            throw new Exception('MoodleRest: Empty token. Use setToken() or put the token on constructor.');
+        }
+        //get the user grade of PAPACS
+        $papacs_exam_course_ID = 2; //The PAPACS Exam course ID
+        $course = get_course($papacs_exam_course_ID);
+        $info = new completion_info($course);
+        $grades = $info->get_completions($this->user->id);
+        $completionrow = array();
+        if (!empty($grades)) {
+            foreach($grades as $grade){
+                $criteria = $grade->get_criteria();
+                $completionrow['type'] = $criteria->criteriatype;
+                $completionrow['title'] = $criteria->get_title();
+                $completionrow['status'] = $grade->get_status();
+                $completionrow['complete'] = $grade->is_complete();
+                $completionrow['timecompleted'] = $grade->timecompleted;
+                $completionrow['details'] = $criteria->get_details($grade);
+                $completionrows[] =  $completionrow;
+            }
+        }
+        
+        $final_result = [
+            'userid' => $this->user->id,
+            'serial' => $this->user->username,
+            'firstname' => $this->user->firstname,
+            'lastname' => $this->user->lastname,
+            'email' => $this->user->email,
+            'completion_status' => $completionrow['details'],
+            "complete" => $completionrow['complete'],
+            "timecompleted" => $completionrow['timecompleted']
+                ];
+        
+        var_dump(json_encode($final_result));  
     }
 }
