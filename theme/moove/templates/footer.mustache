@@ -40,20 +40,29 @@
                     <h3 class="footer-title">{{#str}}contactus, theme_moove{{/str}}</h3>
 
                     <ul>
-                      {{! #website}}
+                        {{#website}}
                             <li>
-                                <a href="https://home.army.mil.ph/cybn/" target="_blank" class="website btn btn-link">
+                                <a href="{{{website}}}" target="_blank" class="website btn btn-link">
                                     <i class="fa fa-globe"></i>
                                 </a>
                             </li>
-                        {{! /website }}
-                        {{! #mobile }}
+                        {{/website}}
+
+                          {{#facebook}}
                             <li>
-                                <a href="tel:+639776417896" target="_blank" class="mobile btn btn-link">
+                                <a href="{{{facebook}}}" target="_blank" class="facebook btn btn-link btn-rounded">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </li>
+                        {{/facebook}}
+
+                        {{#mobile}}
+                            <li>
+                                <a href="tel:{{{mobile}}}" target="_blank" class="mobile btn btn-link">
                                     <i class="fa fa-phone"></i>
                                 </a>
                             </li>
-                        {{! /mobile }}
+                        {{/mobile}}
                         {{#mail}}
                             <li>
                                 <a href="mailto:{{{mail}}}" target="_blank" class="mail btn btn-link">
@@ -62,28 +71,20 @@
                             </li>
                         {{/mail}}
 
-                        {{! #facebook }}
+                        {{#telegram}}
                             <li>
-                                <a href="https://www.facebook.com/cybnasrpa?mibextid=ZbWKwL" target="_blank" class="facebook btn btn-link btn-rounded">
-                                    <i class="fa fa-facebook"></i>
+                                <a href="{{{telegram}}}" target="_blank" class="telegram btn btn-link btn-rounded">
+                                    <i class="fab fa-telegram"></i>
                                 </a>
                             </li>
-                        {{! /facebook}}
-
-                        {{! {{#telegram}} 
-                        <li>
-                            <a href="@cybnhotline" target="_blank" class="telegram btn btn-link btn-rounded">
-                                <i class="fa fa-telegram"></i>
-                            </a>
-                        </li>
-                        {{! {{/telegram}} 
+                        {{/telegram}}
                     </ul>
                 </div>
 
                 <div class="socialnetworks">
                     
                     <ul class="mb-0">
-                        
+                      
 
                         {{#twitter}}
                             <li>
@@ -125,32 +126,54 @@
                             </li>
                         {{/whatsapp}}
 
-                    
+                       
                     </ul>
                 </div>
             </div>
-           
-            
         </div>
     </div>
 
-    
+    <div class="footer-content-debugging footer-dark bg-dark text-light">
+        <div class="moove-container-fluid footer-dark-inner">
+            {{{ output.debug_footer_html }}}
+        </div>
+    </div>
 
+    <div data-region="footer-container-popover">
+        <button class="btn btn-icon bg-secondary icon-no-margin btn-footer-popover" data-action="footer-popover" aria-label="{{#str}}showfooter, theme_boost{{/str}}">
+            {{#pix}}e/question, core{{/pix}}
+        </button>
+    </div>
+    <div class="footer-content-popover container" data-region="footer-content-popover">
+        {{# output.has_popover_links }}
+            <div class="footer-section p-3 border-bottom">
+                {{# output.page_doc_link }}
+                    <div>{{{ output.page_doc_link }}}</div>
+                {{/ output.page_doc_link }}
+
+                {{# output.services_support_link }}
+                    <div>{{{ output.services_support_link }}}</div>
+                {{/ output.services_support_link }}
+            </div>
+        {{/ output.has_popover_links }}
+        <div class="footer-section p-3">
+            <div>{{#str}}poweredbymoodle, core{{/str}}</div>
+            {{#output.moodle_release}}
+                <div>
+                    {{#str}}version, core{{/str}} {{{ output.moodle_release }}}
+                </div>
+            {{/output.moodle_release}}
+        </div>
+    </div>
 
     <div class="copyright">
         <div class="madeby">
-            <p>Developed and Designed by Cyber Battalion @2023</p>
+            <p>Developed and Designed by Cyber Battalion</p>
         </div>
     </div>
 </footer>
 
 {{{ output.standard_end_of_body_html }}}
-
- <script src="{{config.wwwroot}}/custom/template/js/chat.js"></script>
- <script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
- <script src="{{config.wwwroot}}/custom/template/js/jquery.min.js"></script>
- <script src="{{config.wwwroot}}/custom/template/js/telegram.js"></script
-
 
 {{#js}}
     require(['theme_boost/footer-popover'], function(FooterPopover) {
