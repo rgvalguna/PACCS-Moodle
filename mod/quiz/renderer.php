@@ -1173,9 +1173,17 @@ class mod_quiz_renderer extends plugin_renderer_base {
                 $table->data[$attemptobj->get_attempt_number()] = $row;
             }
         } // End of loop over attempts.
-
+        
+        //PAPACS Grade Override
+        $failedExam = '';
+        $sumofgrades = $quiz->sumgrades;
+        $passgrade = explode(' ',$viewobj->infomessages[1]);
+        if($attemptgrade < $passgrade[3] ){
+            $failedExam = "<h4>For this test, you've only earned <b style='color:red;'>{$attemptgrade}</b> points, and unfortunately you did not pass 😔 See our Training Modules to fully comply within the next 7 Days! Keep Learning!</h4>\n";
+        }
         $output = '';
         $output .= $this->view_table_heading();
+        $output .= $failedExam;
         $output .= html_writer::table($table);
         return $output;
     }
