@@ -50,21 +50,17 @@
     }
 }}
                      
-                         <!-- Google fonts-->
-                          {{> theme_moove/head }}
-                          <div style="display:none;"> {{{ output.main_content }}}</div>
-                           <!-- Google Fonts -->
+    
+                    {{> theme_moove/head }}
+                    <div style="display:none;"> {{{ output.main_content }}}</div>
+                    <!-- Google Fonts -->
                     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-                    <!-- Vendor CSS Files -->
                     <link href="{{config.wwwroot}}/custom/template/landing/vendor/aos/aos.css" rel="stylesheet">
                     <link href="{{config.wwwroot}}/custom/template/landing/css/bootstrap.min.css" rel="stylesheet">
                     <link href="{{config.wwwroot}}/custom/template/landing/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
                     <link href="{{config.wwwroot}}/custom/template/landing/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
                     <link href="{{config.wwwroot}}/custom/template/landing/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
                     <link href="{{config.wwwroot}}/custom/template/landing/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-                    <!-- Template Main CSS File -->
                     <link href="{{config.wwwroot}}/custom/template/landing/css/style.css" rel="stylesheet">
               
                      </head>
@@ -76,19 +72,17 @@
                                 <div class="container d-flex align-items-center justify-content-between">
 
                                 <div class="logo">
-                                    <h1><a href="index.html">PAPACS</span></a></h1>
-                                    <!-- Uncomment below if you prefer to use an image logo -->
-                                    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+                                    <h1><a href="{{config.wwwroot}}">PAPACS</span></a></h1>
                                 </div>
 
                                 <nav id="navbar" class="navbar">
                                     <ul>
                                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                                    <li><a class="nav-link scrollto" href="#about">Milestone</a></li>
-                                    <li><a class="nav-link scrollto" href="#services">About</a></li>
-                                    <li><a class="nav-link scrollto" href="#services">Team</a></li>
-                                    <li><a class="nav-link scrollto" href="#services">FAQ</a></li>
-                                    <li><a class="nav-link scrollto" href="#services">Contact</a></li>
+                                    <li><a class="nav-link scrollto" href="#milestone">Milestone</a></li>
+                                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                                    <li><a class="nav-link scrollto" href="#team">Team</a></li>
+                                    <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
+                                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                                     <li><a class="getstarted scrollto" href="{{config.wwwroot}}/login">Login</a></li>
                                     </ul>
                                     <i class="bi bi-list mobile-nav-toggle"></i>
@@ -97,23 +91,23 @@
                                 </div>
                             </header><!-- End Header -->
 
-                            <!-- ======= Hero Section ======= -->
+                            <!-- ======= AVP Section ======= -->
                             <section id="hero" style="margin-bottom:770px;margin-top:-86px;">
                                 <video id="background-video2" autoplay muted loop>
                                     <source src="{{config.wwwroot}}\theme\moove\uploads\mobile\videohome.mp4" type="video/mp4" />
-                
                                 </video>
-                            </section><!-- End Hero -->
+                            <!--      <a href="#about" class="btn-get-started scrollto">Get Started</a> -->
+                            </section><!-- End AVP -->
 
                             <main id="main">
 
-                                <!-- ======= Clients Section ======= -->
-                                <section id="clients" class="clients section-bg">     
+                                <!-- ======= PAPACS Milestone Section ======= -->
+                                <section id="milestone" class="clients section-bg">     
                                  <img src="{{config.wwwroot}}\theme\moove\uploads\img\papacs-milestone2.png" width="100%" height="auto" data-aos="fade-up">
-                                </section><!-- End Clients Section -->   
+                                </section><!-- End PAPACS Milestone Section -->   
 
-                                <!-- ======= Features Section ======= -->
-                                <section id="features" class="features section-bg">
+                                <!-- ======= PAPACS About Section ======= -->
+                                <section id="about" class="features section-bg">
                                 <div class="container">
 
                                     <div class="section-title">
@@ -167,7 +161,7 @@
                                     </div>
 
                                 </div>
-                                </section><!-- End Features Section -->
+                                </section><!-- End of About PAPACS Section -->
 
 
                                 <!-- ======= Team Section ======= -->
@@ -383,16 +377,12 @@
                             </footer><!-- End Footer -->
 
                             <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-                            <!-- Vendor JS Files -->
                             <script src="{{config.wwwroot}}/custom/template/landing/vendor/aos/aos.js"></script>
                             <script src="{{config.wwwroot}}/custom/template/landing/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
                             <script src="{{config.wwwroot}}/custom/template/landing/vendor/glightbox/js/glightbox.min.js"></script>
                             <script src="{{config.wwwroot}}/custom/template/landing/vendor/isotope-layout/isotope.pkgd.min.js"></script>
                             <script src="{{config.wwwroot}}/custom/template/landing/vendor/swiper/swiper-bundle.min.js"></script>
                             <script src="{{config.wwwroot}}/custom/template/landing/vendor/php-email-form/validate.js"></script>
-
-                            <!-- Template Main JS File -->
                             <script src="{{config.wwwroot}}/custom/template/landing/js/main.js"></script>
                      </body>
 
