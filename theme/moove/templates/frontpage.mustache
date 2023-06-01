@@ -49,151 +49,317 @@
         "addblockbutton": ""
     }
 }}
-                     <div style="display:none;"> {{{ output.main_content }}}</div>
-
-                     <!DOCTYPE html>
-                     <html lang="en">
-
-                     {{! <head>
-                         <meta charset="utf-8" />
-                         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                         <title>Philippine Army Preliminary Assessment in Cybersecurity System | PAPACS</title>
-                         <!-- Favicon-->
-                         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-                         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous">
-                         </script> }}
-
-                         <!-- Google fonts-->
-                          {{> theme_moove/head }}
-                           <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet"
-                             type="text/css" />
-                         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
-                             rel="stylesheet" type="text/css" />
-                         <link href="{{config.wwwroot}}/custom/template/css/styles.css" rel="stylesheet" />
-                        
+                     
+    
+                    {{> theme_moove/head }}
+                    <div style="display:none;"> {{{ output.main_content }}}</div>
+                    <!-- Google Fonts -->
+                    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+                    <link href="{{config.wwwroot}}/custom/template/landing/vendor/aos/aos.css" rel="stylesheet">
+                    <link href="{{config.wwwroot}}/custom/template/landing/css/bootstrap.min.css" rel="stylesheet">
+                    <link href="{{config.wwwroot}}/custom/template/landing/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+                    <link href="{{config.wwwroot}}/custom/template/landing/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+                    <link href="{{config.wwwroot}}/custom/template/landing/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+                    <link href="{{config.wwwroot}}/custom/template/landing/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+                    <link href="{{config.wwwroot}}/custom/template/landing/css/style.css" rel="stylesheet">
               
-                     <body id="page-top">
-                         <!-- Masthead-->
-                         <header class="masthead" style="padding-top: 36rem;">
-                             <div class="container">
-                               
-                                <video id="background-video" autoplay muted loop>
+                     </head>
+
+                            <body>
+
+                            <!-- ======= Header ======= -->
+                            <header id="header">
+                                <div class="container d-flex align-items-center justify-content-between">
+
+                                <div class="logo">
+                                    <h1><a href="{{config.wwwroot}}">PAPACS</span></a></h1>
+                                </div>
+
+                                <nav id="navbar" class="navbar">
+                                    <ul>
+                                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                                    <li><a class="nav-link scrollto" href="#milestone">Milestone</a></li>
+                                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                                    <li><a class="nav-link scrollto" href="#team">Team</a></li>
+                                    <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
+                                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                                    <li><a class="getstarted scrollto" href="{{config.wwwroot}}/login">Login</a></li>
+                                    </ul>
+                                    <i class="bi bi-list mobile-nav-toggle"></i>
+                                </nav><!-- .navbar -->
+
+                                </div>
+                            </header><!-- End Header -->
+
+                            <!-- ======= AVP Section ======= -->
+                            <section id="hero" style="margin-bottom:770px;margin-top:-86px;">
+                                <video id="background-video2" autoplay muted loop>
                                     <source src="{{config.wwwroot}}\theme\moove\uploads\mobile\videohome.mp4" type="video/mp4" />
-                
                                 </video>
-                                  <a class="btn btn-primary btn-xl text-uppercase" 
-                                     href="{{config.wwwroot}}/login">Login</a>
-                                 {{! <div class="masthead-subheading" >Army Signal Regiment</div>
-                <div class="masthead-heading text-uppercase">Secure Your Future!</div> }}
-                                
-                             </div>
-                         </header>
-                         
-                         <!-- Services-->
-                         {{! <section class="page-section" id="services">
-                             <div class="container">
-                                 <div class="text-center">
-                                     <h2 class="section-heading text-uppercase">Services</h2>
-                                     <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.
-                                     </h3>
-                                 </div>
-                                 <div class="row text-center">
-                                     <div class="col-md-4">
-                                         <span class="fa-stack fa-4x">
-                                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                                             <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                                         </span>
-                                         <h4 class="my-3">E-Commerce</h4>
-                                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                             Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
-                                         </p>
-                                     </div>
-                                     <div class="col-md-4">
-                                         <span class="fa-stack fa-4x">
-                                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                                             <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                                         </span>
-                                         <h4 class="my-3">Responsive Design</h4>
-                                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                             Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
-                                         </p>
-                                     </div>
-                                     <div class="col-md-4">
-                                         <span class="fa-stack fa-4x">
-                                             <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                                             <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                                         </span>
-                                         <h4 class="my-3">Web Security</h4>
-                                         <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                             Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.
-                                         </p>
-                                     </div>
-                                 </div>
-                             </div>
-                         </section> }}
+                            <!--      <a href="#about" class="btn-get-started scrollto">Get Started</a> -->
+                            </section><!-- End AVP -->
 
-                         <!-- About -->
-                         <section class="page-section bg-light" id="team">
-                             <div class="container">
-                                 <div class="text-center">
-                                     <h2 class="section-heading text-uppercase">About PAPACS</h2>
-                                     <h3 class="section-subheading text-muted"></h3>
-                                 </div>
-                                 <div class="row">
-                                     <div class="col-lg-2">
-                                         <div class="team-member">
-                                             
-                                         </div>
-                                     </div>
-                                     <div class="col-lg-8">
-                                         <div class="team-member">
-                                             <img class="mx-auto rounded-circle"
-                                                 src="{{config.wwwroot}}\theme\moove\uploads\img\BGENPAPA.jpg"
-                                                 alt="..." />
-                                             <h4>BGEN ALEJANDRO JAVIER PAPA MNSA PA</h4>
-                                             <p class="text-muted">Commander</p>
-                                         </div>
-                                     </div>
-                                     <div class="col-lg-2">
-                                         <div class="team-member">
-                                             
-                                         </div>
-                                     </div>
-                                 </div>
-                                 <div class="row">
-                                     <div>
-                                         <p class="large text-muted" style="text-align:justify"> <b> Philippine Army Preliminary Assessment in Cybersecurity System (PAPACS) </b> is developed and designed to consistently improve the security of the Philippine Army Cyberspace by updating the Process, enhancing the Technology, and educating ASR personnel then the whole Army.
+                            <main id="main">
 
-This is the first order of <b> BGEN ALEJANDRO JAVIER PAPA MNSA PA </b>, to Cyber Battalion upon his assumption as the Commander of Army Signal Regiment in line with his Command Philosophy. The PAPACS aims to verify the successful candidate's knowledge and skills required to operate the organization's cyber assets, maintain a secured network, and leverage the personnel standard in computer and cybersecurity literacy with the intention of actively defending and constantly enhancing the security of the Philippine Army’s Cyberspace.
-</p>
-                                     </div>
-                                 </div>
-                             </div>
-                         </section>
-                         <!-- Footer-->
-                         <footer class="footer py-4" style="background-color:#cca000">
-                             <div class="container">
-                                 <div class="row align-items-center">
-                                     <div class="col-lg-4 text-lg-start">Developed and Designed by Cyber Battalion @2023</div>
-                                     <div class="col-lg-4 my-3 my-lg-0">
-                                         {{! <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a> }}
-                                     </div>
-                                     <div class="col-lg-4 text-lg-end">
-                                         <a class="link-dark text-decoration-none me-3" href="#!">Privacy Policy</a>
-                                         <a class="link-dark text-decoration-none" href="#!">Terms of Use</a>
-                                     </div>
-                                 </div>
-                             </div>
-                         </footer>
+                                <!-- ======= PAPACS Milestone Section ======= -->
+                                <section id="milestone" class="clients section-bg">     
+                                 <img src="{{config.wwwroot}}\theme\moove\uploads\img\papacs-milestone2.png" width="100%" height="auto" data-aos="fade-up">
+                                </section><!-- End PAPACS Milestone Section -->   
 
-                         <!-- Bootstrap core JS-->
-                         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
-                         </script>
-                         <!-- Core theme JS-->
-                         <script src="{{config.wwwroot}}/custom/template/js/scripts.js"></script>
-                         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+                                <!-- ======= PAPACS About Section ======= -->
+                                <section id="about" class="features section-bg">
+                                <div class="container">
+
+                                    <div class="section-title">
+                                    <h2 data-aos="fade-in">About PAPACS</h2>
+                                    <p data-aos="fade-in">Developed and designed to consistently improve the security of the Philippine Army Cyberspace by updating the Process, enhancing the Technology, and educating ASR personnel then the whole Army.</p>
+                                    </div>
+
+                                    <div class="row content">
+                                    <div class="col-md-5" data-aos="fade-right">
+                                       <a href="https://home.army.mil.ph/cybn/" target="_blank"><img src="{{config.wwwroot}}/theme/moove/uploads/img/Cyber Logo 2022.png" class="img-fluid" alt="Cyber Battalion, ASR"></a>
+                                    </div>
+                                    <div class="col-md-7 pt-4" data-aos="fade-left">
+                                        <h3>Command Philosophy</h3>
+                                        <p class="fst-italic" style="text-align:justify";>
+                                        This is the first order of <b> BGEN ALEJANDRO JAVIER PAPA PA </b>, to Cyber Battalion upon his assumption as the Commander of Army Signal Regiment in line with his Command Philosophy.
+                                        </p>
+                                        <ul>
+                                       <li style="text-align:justify";><i class="bi bi-check" ></i>Effective cybersecurity measures can help protect against unauthorized access, data breaches, and other malicious cyber activities that can compromise the integrity of military operations. By securing its cyberspace, the Philippine Army can ensure that its personnel, equipment, and resources are protected from cyber threats, thereby enhancing its overall effectiveness and readiness.</li>
+                                        </ul>
+                                    </div>
+                                    </div>
+
+                                    <div class="row content">
+                                    <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+                                        <a href="https://home.army.mil.ph/asr/" target="_blank"><img src="{{config.wwwroot}}/theme/moove/uploads/img/ASR LOGO1.png" class="img-fluid" alt="Army Signal Regiment"></a>
+                                    </div>
+                                    <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+                                        <h3>The PAPACS aims to verify the successful candidate's knowledge and skills required to operate the organization's cyber assets</h3>
+                                        <p class="fst-italic" style="text-align:justify";>
+                                         Maintain a secured network, and leverage the personnel standard in computer  and cybersecurity literacy with the intention of actively defending.
+                                        </p>
+                                         <ul>
+                                        <li style="text-align:justify";><i class="bi bi-check"></i>With the growing threat of cyber attacks from hostile actors, it is crucial for the army to have robust and effective cybersecurity measures in place.</li>
+                                        </ul>
+                                    </div>
+                                    </div>
+
+                                    <div class="row content">
+                                    <div class="col-md-5" data-aos="fade-right">
+                                        <a href="https://army.mil.ph/home/" target="_blank"><img src="{{config.wwwroot}}/theme/moove/uploads/img/army.png" class="img-fluid" alt="Philippine Army"></a>
+                                    </div>
+                                    <div class="col-md-7 pt-5" data-aos="fade-left">
+                                        <h3>Constantly enhancing the security of the Philippine Army’s Cyberspace</h3>
+                                        <p style="text-align:justify";>
+                                        Enhancing the security of the Philippine Army's cyberspace is a critical priority that must be pursued with vigor and determination.
+                                        </p>
+                                        <ul>
+                                        <li style="text-align:justify";><i class="bi bi-check"></i>By investing in cybersecurity and staying up-to-date with the latest threats and best practices, the army can help ensure the safety and security of its personnel and the nation as a whole.</li>
+                                        </ul>
+                                    </div>
+                                    </div>
+
+                                </div>
+                                </section><!-- End of About PAPACS Section -->
+
+
+                                <!-- ======= Team Section ======= -->
+                                <section id="team" class="team section-bg">
+                                <div class="container">
+
+                                    <div class="section-title">
+                                    <h2 data-aos="fade-in">Team</h2>
+                                    <p data-aos="fade-in">Cyber Battalion (P), ASR was tasked with the implementation and development of the Philippine Army Preliminary Assessment in Cybersecurity System (PAPACS), which is composed of the team presented by Task Organization here below:</p>
+                                   
+                                   <div class="pic"><img src="{{config.wwwroot}}/theme/moove/uploads/team/team_papacs.png" id="team-sec" alt="PAPACS TEAM"></div>
+                                    </div>
+
+                                </div>
+                                </section><!-- End Team Section -->
+
+                                <!-- ======= Frequently Asked Questions Section ======= -->
+                                <section id="faq" class="faq section-bg">
+                                <div class="container">
+
+                                    <div class="section-title">
+                                    <h2 data-aos="fade-in">Frequently Asked Questions</h2>
+                                    <p data-aos="fade-in">Got a questions? We're here to answer! If you don't see your questions here, drop us a message on our Contact Page.</p>
+                                    </div>
+
+                                    <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up">
+                                    <div class="col-lg-5">
+                                        <i class="bx bx-help-circle"></i>
+                                        <h4>Is PAPACS only accessible via Philippine Army Network (PANET)?</h4>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>
+                                         Yes, PAPACS is only accessible via the Philippine Army Network (PANET).
+                                        </p>
+                                    </div>
+                                    </div><!-- End F.A.Q Item-->
+
+                                    <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="col-lg-5">
+                                        <i class="bx bx-help-circle"></i>
+                                        <h4>What happens if we fail three (3) times on our attempts to get the PAPACS Certification?</h4>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>
+                                        Failure to pass PAPACS certification three times is subject for explanation letter.
+                                        </p>
+                                    </div>
+                                    </div><!-- End F.A.Q Item-->
+
+                                    <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="col-lg-5">
+                                        <i class="bx bx-help-circle"></i>
+                                        <h4>What are the references of the questionnaires?</h4>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>
+                                        References for the questionnaires are based mostly on the courses offered in the Philippine Army. We encourage you to click "LINK" for further reading.
+                                        </p>
+                                    </div>
+                                    </div><!-- End F.A.Q Item-->
+
+                                    <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="col-lg-5">
+                                        <i class="bx bx-help-circle"></i>
+                                        <h4>How secured are our personal data submitted to PAPACS? </h4>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>
+                                       PAPACS can only be accessed through the Philippine Army Network (PANET), where personal data are stored and maintained at the Philippine Army Data Center.
+                                        </p>
+                                    </div>
+                                    </div><!-- End F.A.Q Item-->
+
+                                    <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="col-lg-5">
+                                        <i class="bx bx-help-circle"></i>
+                                        <h4>Why is PAPACS Certificate only valid for a year?</h4>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>
+                                        PAPACS Certificate is only valid for a year since Research and Technology Trends evolve over time. Furthermore, military personnel should always be on top of their game in terms of how current and well-equipped their knowledge of cyber assets and cybersecurity is.
+                                        </p>
+                                    </div>
+                                    </div><!-- End F.A.Q Item-->
+
+                                     <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="col-lg-5">
+                                        <i class="bx bx-help-circle"></i>
+                                        <h4>Can I retake the examination in advance prior the expiry date for revalidation?</h4>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>
+                                        Unfortunately, you can only take the examination after the expiration of your certificate.
+                                        </p>
+                                    </div>
+                                    </div><!-- End F.A.Q Item-->
+
+                                     <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="col-lg-5">
+                                        <i class="bx bx-help-circle"></i>
+                                        <h4>How can you check the validity of the certificates? If its fake or verified?</h4>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>
+                                       To check the validity of the certificates, whether fake or not, unique QR codes for each examinee who has passed are attached to the certificate.
+                                        </p>
+                                    </div>
+                                    </div><!-- End F.A.Q Item-->
+
+                                    <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="col-lg-5">
+                                        <i class="bx bx-help-circle"></i>
+                                        <h4>How can I print the PAPACS certificate?</h4>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>
+                                        PAPACS Certificate can easily be printed after passing the examination. Moreover, certificates are always downloadable and can be found on your personal accounts.
+                                        </p>
+                                    </div>
+                                    </div><!-- End F.A.Q Item-->
+
+                                    <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="col-lg-5">
+                                        <i class="bx bx-help-circle"></i>
+                                        <h4>What is the time limit for the exam?</h4>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>
+                                       You can only take the examination for 30 minutes.
+                                        </p>
+                                    </div>
+                                    </div><!-- End F.A.Q Item-->
+
+                                    <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="col-lg-5">
+                                        <i class="bx bx-help-circle"></i>
+                                        <h4>What is the passing score for the exam?</h4>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>
+                                       The passing score for PAPACS certification is 75%.
+                                        </p>
+                                    </div>
+                                    </div><!-- End F.A.Q Item-->
+
+                                    <div class="row faq-item d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="col-lg-5">
+                                        <i class="bx bx-help-circle"></i>
+                                        <h4>Can the certificate from passing PAPACS be added to the Summary of Information (SOI)?</h4>
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <p>
+                                        Yes, PAPACS certificate can be added to your Summary of Information (SOI) with the inclusion of validity.
+                                        </p>
+                                    </div>
+                                    </div><!-- End F.A.Q Item-->
+
+                                </div>
+                                </section><!-- End Frequently Asked Questions Section -->
+
+                                <!-- ======= Contact Section ======= -->
+                                <section id="contact" class="contact section-bg">
+                                <div class="container" data-aos="fade-up">
+
+                                    <div class="section-title">
+                                    <h2>Contact</h2>
+                                    <p>Got more questions? We'd love to hear from you. Send us your concern and we'll respond as soon as possible!</p>
+                                    </div>
+
+                                    <div class="row">
+                                     <img src="{{config.wwwroot}}/theme/moove/uploads/img/socmed.jpg" class="img-fluid" alt="Cyber Battalion" data-aos="fade-up">
+                                    </div>
+
+                                </div>
+                                </section><!-- End Contact Section -->
+
+                            </main><!-- End #main -->
+
+                            <!-- ======= Footer ======= -->
+                            <footer id="footer">
+                                <div class="container footer-bottom clearfix">
+                                <div class="copyright">
+                                    &copy; Copyright <strong><span>PAPACS</span></strong>. All Rights Reserved
+                                </div>
+                                <div class="credits">
+                                    Developed by <a href="https://home.army.mil.ph/cybn/">Cyber Battalion</a>
+                                </div>
+                                </div>
+                            </footer><!-- End Footer -->
+
+                            <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+                            <script src="{{config.wwwroot}}/custom/template/landing/vendor/aos/aos.js"></script>
+                            <script src="{{config.wwwroot}}/custom/template/landing/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                            <script src="{{config.wwwroot}}/custom/template/landing/vendor/glightbox/js/glightbox.min.js"></script>
+                            <script src="{{config.wwwroot}}/custom/template/landing/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+                            <script src="{{config.wwwroot}}/custom/template/landing/vendor/swiper/swiper-bundle.min.js"></script>
+                            <script src="{{config.wwwroot}}/custom/template/landing/vendor/php-email-form/validate.js"></script>
+                            <script src="{{config.wwwroot}}/custom/template/landing/js/main.js"></script>
                      </body>
 
                      </html>

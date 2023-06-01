@@ -90,21 +90,32 @@
  
 }
 
+#background-video2 {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: inherit;
+  position: absolute;
+  z-index: -1;
+}
+
+#team-sec {
+  width:95%;
+}
+
 #loginbutton {
  
   position: absolute;
-
  
 }
 
-@media (max-width: 800px) {
-    #background-video { display: none; }
-    body {
-      background: url("{{config.wwwroot}}/theme/moove/uploads/img/CAROUSEL8.jpg") no-repeat;
-      background-size: 100% auto; 
-      background-position:top;
-      
-    }
+
+.about .image {
+    background: url("{{config.wwwroot}}/theme/moove/uploads/img/ASR LOGO1.png") center center no-repeat!important;
+    background-size: cover;
+    min-height: 400px;
+}
+
+
 
     .masthead {
 
@@ -116,6 +127,9 @@
     }
 
  
+
+.course-category{
+  display:none !important;
 }
 
 </style>
