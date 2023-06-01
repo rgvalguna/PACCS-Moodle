@@ -72,6 +72,8 @@ $string['duplicatetemplateconfirm'] = 'Are you sure you want to duplicate this c
 $string['editcustomcert'] = 'Edit certificate';
 $string['editelement'] = 'Edit element';
 $string['edittemplate'] = 'Edit template';
+$string['elementheight'] = 'Height';
+$string['elementheight_help'] = 'Specify the height of the element. If \'0\' is allowed it is automatically calculated.';
 $string['elementname'] = 'Element name';
 $string['elementname_help'] = 'This will be the name used to identify this element when editing a certificate. Note: this will not displayed on the PDF.';
 $string['elementplugins'] = 'Element plugins';
@@ -80,7 +82,7 @@ $string['elements_help'] = 'This is the list of elements that will be displayed 
 
 Please note: The elements are rendered in this order. The order can be changed by using the arrows next to each element.';
 $string['elementwidth'] = 'Width';
-$string['elementwidth_help'] = 'Specify the width of the element - \'0\' means that there is no width constraint.';
+$string['elementwidth_help'] = 'Specify the width of the element. If \'0\' is allowed it is automatically calculated.';
 $string['emailnonstudentbody'] = 'Attached is the certificate \'{$a->certificatename}\' for \'{$a->userfullname}\' for the course \'{$a->coursefullname}\'.';
 $string['emailnonstudentbodyplaintext'] = 'Attached is the certificate \'{$a->certificatename}\' for \'{$a->userfullname}\' for the course \'{$a->coursefullname}\'.';
 $string['emailnonstudentcertificatelinktext'] = 'View certificate report';
@@ -110,7 +112,9 @@ $string['height'] = 'Height';
 $string['height_help'] = 'This is the height of the certificate PDF in mm. For reference an A4 piece of paper is 297mm high and a letter is 279mm high.';
 $string['invalidcode'] = 'Invalid code supplied.';
 $string['invalidcolour'] = 'Invalid colour chosen, please enter a valid HTML colour name, or a six-digit, or three-digit hexadecimal colour.';
-$string['invalidelementwidth'] = 'Please enter a positive number.';
+$string['invalidelementwidthorheightnotnumber'] = 'Please enter a valid number.';
+$string['invalidelementwidthorheightzeroallowed'] = 'Please enter a number greater than or equal to 0.';
+$string['invalidelementwidthorheightzeronotallowed'] = 'Please enter a number greater than 0.';
 $string['invalidposition'] = 'Please select a positive number for position {$a}.';
 $string['invalidheight'] = 'The height has to be a valid number greater than 0.';
 $string['invalidmargin'] = 'The margin has to be a valid number greater than 0.';
@@ -204,3 +208,10 @@ $string['verifycertificateanyone'] = 'Allow anyone to verify a certificate';
 $string['verifycertificateanyone_help'] = 'This setting enables anyone with the certificate verification link (including users not logged in) to verify a certificate.';
 $string['width'] = 'Width';
 $string['width_help'] = 'This is the width of the certificate PDF in mm. For reference an A4 piece of paper is 210mm wide and a letter is 216mm wide.';
+
+$string['userlanguage'] = 'Use user preferences';
+$string['languageoptions'] = 'Force Certificate Language';
+$string['userlanguage_help'] = 'You can force the language of the certificate to override the user\'s language preferences.';
+
+// Acess API.
+$string['customcert:managelanguages'] = 'Manage language on edit form';

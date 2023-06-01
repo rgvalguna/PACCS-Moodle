@@ -23,7 +23,6 @@
  */
 
 require_once('../../config.php');
-require_once("$CFG->libdir/completionlib.php");
 
 $id = required_param('id', PARAM_INT);
 $downloadown = optional_param('downloadown', false, PARAM_BOOL);
@@ -47,47 +46,7 @@ require_capability('mod/customcert:view', $context);
 $canreceive = has_capability('mod/customcert:receiveissue', $context);
 $canmanage = has_capability('mod/customcert:manage', $context);
 $canviewreport = has_capability('mod/customcert:viewreport', $context);
-//get the user grade of PAPACS
-$papacs_exam_course_ID = 2; //The PAPACS Exam course ID
-$course = get_course($papacs_exam_course_ID);
-$info = new completion_info($course);
-$grades = $info->get_completions($USER->id);
-// Load course completion.
-$completionparams = array(
-    'userid' => $USER->id,
-    'course' => $papacs_exam_course_ID,
-);
-$ccompletion = new completion_completion($completionparams);
-$requirement_grade = 0;
-$status_grade = 0;
-if (!empty($grades)) {
-    $completionrows = array();
-    $completions =  $info->is_course_complete($USER->id);
-    $completionrow = array();
-    foreach ($grades as $grade) {
-        $criteria = $grade->get_criteria();
-        $completionrow['type'] = $criteria->criteriatype;
-        $completionrow['title'] = $criteria->get_title();
-        $completionrow['status'] = $grade->get_status();
-        $completionrow['complete'] = $grade->is_complete();
-        $completionrow['timecompleted'] = $grade->timecompleted;
-        $completionrow['details'] = $criteria->get_details($grade);
-        $completionrows[] =  $completionrow;
-    }
-    // $resultkrb = grade_get_course_grades($papacs_exam_course_ID, $USER->id);
-    // $grd = $resultkrb->grades[$USER->id]; 
-    //get the PAPACS Course grade
-    foreach ($completionrows as $course_grade){
-        if($course_grade['details']['type'] == 'Course grade'){
-            $requirement_grade = intval($course_grade['details']['requirement']);
-            $status_grade = intval(!empty($course_grade['details']['status']) ?  $course_grade['details']['status'] :  0 );
-            if($requirement_grade >= $status_grade){ //Set PAPACS Passing Score
-                $canreceive = false;//PAPACS User cant view and download the Certificate if not Passed the Passing Criteria
-            }
-        }
-    }
-    
-}
+
 // Initialise $PAGE.
 $pageurl = new moodle_url('/mod/customcert/view.php', array('id' => $cm->id));
 \mod_customcert\page_helper::page_setup($pageurl, $context, format_string($customcert->name));
@@ -115,6 +74,7 @@ if ($deleteissue && $canmanage && confirm_sesskey()) {
                 'sesskey' => sesskey()
             ]
         );
+
         // Show a confirmation page.
         $PAGE->navbar->add(get_string('deleteconfirm', 'customcert'));
         $message = get_string('deleteissueconfirm', 'customcert');
@@ -176,19 +136,9 @@ if (!$downloadown && !$downloadissue) {
         $link = new moodle_url('/mod/customcert/view.php', array('id' => $cm->id, 'downloadown' => true));
         $downloadbutton = new single_button($link, $linkname, 'get', true);
         $downloadbutton->class .= ' m-b-1';  // Seems a bit hackish, ahem.
-        $issuehtml = "<h4>Great News! You've Passed the assessment,  you are now PAPACS Certified ,Congratulations! Please download your certificate.🫡</h4>\n";
-        $downloadbutton = $OUTPUT->render($downloadbutton);
-    }else{
-        $linkname = get_string('getcustomcert', 'customcert');
-        $link = new moodle_url('/course/view.php', array('id' => $papacs_exam_course_ID));
-        $downloadbutton = new single_button($link, $linkname, 'get', true);
-        $downloadbutton->class .= ' m-b-3 red';  // Seems a bit hackish, ahem.
-        $downloadbutton->label = 'Continue';
-        $issuehtml = "<h4>For this test, you've only earned <b style='color:red;'>{$status_grade}</b> points, and unfortunately you did not pass 😔 See our Training Modules to fully comply within the next 7 Days! Keep Learning!</h4>\n";
         $downloadbutton = $OUTPUT->render($downloadbutton);
     }
-   
-    
+
     // Output all the page data.
     echo $OUTPUT->header();
     echo $issuehtml;
