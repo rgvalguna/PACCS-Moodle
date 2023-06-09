@@ -41,7 +41,12 @@ class element extends \mod_customcert\element {
      * @param \stdClass $user the user we are rendering this for
      */
     public function render($pdf, $preview, $user) {
-        \mod_customcert\element_helper::render_content($pdf, $this, fullname($user));
+        // \mod_customcert\element_helper::render_content($pdf, $this, fullname($user));
+        $rank = $this->get_papacs_military_fullname($user, $preview, 24);
+        $afpos = $this->get_papacs_military_fullname($user, $preview, 27);
+        $branchofsrvc = $this->get_papacs_military_fullname($user, $preview, 26);
+        $fullname = $rank." ".$user->firstname." ".$user->middlename." ".$user->lastname." ".$afpos." ".$branchofsrvc;
+        \mod_customcert\element_helper::render_content($pdf, $this, $fullname);
     }
 
     /**
@@ -56,5 +61,45 @@ class element extends \mod_customcert\element {
         global $USER;
 
         return \mod_customcert\element_helper::render_html_content($this, fullname($USER));
+    }
+
+     /**
+     * Helper function that returns the text.
+     *
+     * @param \stdClass $user the user we are rendering this for
+     * @param bool $preview Is this a preview?
+     * @return string
+     */
+    protected function get_papacs_military_fullname(\stdClass $user, bool $preview, int $field_id) : string {
+        global $CFG, $DB;
+
+        // The user field to display.
+        // $field = $this->get_data();
+        $field = $field_id;
+        // The value to display - we always want to show a value here so it can be repositioned.
+        if ($preview) {
+            $value = $field;
+        } else {
+            $value = '';
+        }
+        if (is_number($field)) { // Must be a custom user profile field.
+            if ($field = $DB->get_record('user_info_field', array('id' => $field))) {
+                // Found the field name, let's update the value to display.
+                $value = $field->name;
+                $file = $CFG->dirroot . '/user/profile/field/' . $field->datatype . '/field.class.php';
+                if (file_exists($file)) {
+                    require_once($CFG->dirroot . '/user/profile/lib.php');
+                    require_once($file);
+                    $class = "profile_field_{$field->datatype}";
+                    $field = new $class($field->id, $user->id);
+                    $value = $field->display_data();
+                }
+            }
+        } else if (!empty($user->$field)) { // Field in the user table.
+            $value = $user->$field;
+        }
+
+        $context = \mod_customcert\element_helper::get_context($this->get_id());
+        return format_string($value, true, ['context' => $context]);
     }
 }
