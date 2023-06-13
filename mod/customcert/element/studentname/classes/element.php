@@ -42,10 +42,25 @@ class element extends \mod_customcert\element {
      */
     public function render($pdf, $preview, $user) {
         // \mod_customcert\element_helper::render_content($pdf, $this, fullname($user));
+        $EP = ['Pvt','PFC','Cpl','Sgt','SSg','TSg','MSg','SMS','CMS'];
+        $officer = ['2LT', '1LT', 'CPT', 'MAJ', 'LTC', 'COL', 'BGEN', 'MGEN', 'LTGEN', 'GEN'];
         $rank = $this->get_papacs_military_fullname($user, $preview, 24);
         $afpos = $this->get_papacs_military_fullname($user, $preview, 27);
         $branchofsrvc = $this->get_papacs_military_fullname($user, $preview, 26);
-        $fullname = $rank." ".$user->firstname." ".$user->middlename." ".$user->lastname." ".$afpos." ".$branchofsrvc;
+        $middlename = $this->get_papacs_military_fullname($user, $preview, 28);
+        $fullname = $rank." ".ucwords(strtolower($user->firstname))." ".ucwords(strtolower($middlename))." ".ucwords(strtolower($user->lastname));
+       // $fullname = $rank." ".$user->firstname." ".$user->middlename." ".$user->lastname." ".$afpos." ".$branchofsrvc;
+       if (in_array($rank, $EP)) {
+        if($rank == 'Pvt'){
+            if($afpos=='INF'||$afpos=='(INF)'){
+                $afpos='(Inf)';
+            }
+        }
+        $fullname = $rank." ".ucwords(strtolower($user->firstname))." ".ucwords(strtolower($middlename))." ".ucwords(strtolower($user->lastname))." ".$afpos." ".$branchofsrvc;
+       }
+       if (in_array($rank, $officer)) {
+        $fullname =  strtoupper($rank." ".$user->firstname." ".$middlename." ".$user->lastname." ".$afpos." ".$branchofsrvc);
+       }
         \mod_customcert\element_helper::render_content($pdf, $this, $fullname);
     }
 

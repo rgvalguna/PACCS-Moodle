@@ -63,6 +63,29 @@
         return format_string($value, true, ['context' => $context]);
     }
 
+
+    /**
+     * MIlitary and Civilian Name Conversion
+     */
+    function military_name($user, $rank, $afpos, $branchofsrvc, $middlename){
+        $EP = ['Pvt','PFC','Cpl','Sgt','SSg','TSg','MSg','SMS','CMS'];
+        $officer = ['2LT', '1LT', 'CPT', 'MAJ', 'LTC', 'COL', 'BGEN', 'MGEN', 'LTGEN', 'GEN'];
+        $fullname = $rank." ".ucwords(strtolower($user->firstname))." ".ucwords(strtolower($middlename))." ".ucwords(strtolower($user->lastname));
+       // $fullname = $rank." ".$user->firstname." ".$user->middlename." ".$user->lastname." ".$afpos." ".$branchofsrvc;
+       if (in_array($rank, $EP)) {
+        if($rank == 'Pvt'){
+            if($afpos=='INF'||$afpos=='(INF)'){
+                $afpos='(Inf)';
+            }
+        }
+        $fullname = $rank." ".ucwords(strtolower($user->firstname))." ".ucwords(strtolower($middlename))." ".ucwords(strtolower($user->lastname))." ".$afpos." ".$branchofsrvc;
+       }
+       if (in_array($rank, $officer)) {
+        $fullname =  strtoupper($rank." ".$user->firstname." ".$middlename." ".$user->lastname." ".$afpos." ".$branchofsrvc);
+       }
+       return $fullname;
+    }
+
     $sitecontext = context_system::instance();
     $site = get_site();
 
@@ -443,7 +466,9 @@
             $afpos = get_papacs_military_fullname($user, true, 27);
             $branchofservc = get_papacs_military_fullname($user, true, 26);
             $rank = get_papacs_military_fullname($user, true, 24);
-            $fullname = $rank." ".fullname($user, true)." ".$afpos." ".$branchofservc;
+            $middlename = get_papacs_military_fullname($user, true, 28);
+            //$fullname = $rank." ".fullname($user, true)." ".$afpos." ".$branchofservc;
+            $fullname = military_name($user, $rank, $afpos, $branchofservc, $middlename);
 
             $row = array ();
             $row[] = "<a href=\"../user/view.php?id=$user->id&amp;course=$site->id\">$fullname</a>";
