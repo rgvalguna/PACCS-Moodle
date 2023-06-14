@@ -230,7 +230,9 @@ Note: This is a auto generated notifications from PAPACS Administrator.Thank you
         $userMessage = "
 <h3>Notification Message 📩:</h3>\n
 <p>Thank you for Registering at <b>Philippine Army Preliminary Assessment in Cybersecurity System (PAPACS)</b>.
-Please wait for the Administrator Representative to activate your account🫡🫡🫡.</p>\n";
+Please go to your email account to activate and confirm your registration.If you can't find the email kindly see through your Spam Emails.
+There are 300 maximum users that can be activated using email activation per day and by this instance kindly notify the administrator for the confirmation if no email confirmation arrived. 
+Maraming Salamat Po 🫡🫡🫡.</p>\n";
         $content = ['chat_id' => CHAT_ID, 'text' => $message];
         $telegram->sendMessage($content);
 
