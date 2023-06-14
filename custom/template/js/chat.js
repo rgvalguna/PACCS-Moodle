@@ -4,5 +4,5 @@ window.intergramCustomizations = {
 titleClosed: 'Chat',
 titleOpen: 'PAPACS Chat Support',
 introMessage: "Welcome to PAPACS Live Support Chat."+
-              "\n\nPlease enter your Full Name to Verify.",
+              "\n\nPlease enter your Full Name and Unit to Verify.",
 };
