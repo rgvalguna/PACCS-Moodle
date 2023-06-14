@@ -104,6 +104,69 @@ class auth_plugin_email extends auth_plugin_base {
         return $this->user_signup_with_confirmation($user, $notify);
     }
 
+    //custom user military naming
+    /**
+     * MIlitary and Civilian Name Conversion
+     */
+    public function military_name($user, $rank, $afpos, $branchofsrvc, $middlename){
+        $EP = ['Pvt','PFC','Cpl','Sgt','SSg','TSg','MSg','SMS','CMS'];
+        $officer = ['2LT', '1LT', 'CPT', 'MAJ', 'LTC', 'COL', 'BGEN', 'MGEN', 'LTGEN', 'GEN'];
+        $fullname = $rank." ".ucwords(strtolower($user->firstname))." ".ucwords(strtolower($middlename))." ".ucwords(strtolower($user->lastname));
+       // $fullname = $rank." ".$user->firstname." ".$user->middlename." ".$user->lastname." ".$afpos." ".$branchofsrvc;
+       if (in_array($rank, $EP)) {
+        if($rank == 'Pvt'){
+            if($afpos=='INF'||$afpos=='(INF)'){
+                $afpos='(Inf)';
+            }
+        }
+        $fullname = $rank." ".ucwords(strtolower($user->firstname))." ".ucwords(strtolower($middlename))." ".ucwords(strtolower($user->lastname))." ".$afpos." ".$branchofsrvc;
+       }
+       if (in_array($rank, $officer)) {
+        $fullname =  strtoupper($rank." ".$user->firstname." ".$middlename." ".$user->lastname." ".$afpos." ".$branchofsrvc);
+       }
+       return $fullname;
+    }
+
+    /**
+     * Helper function that returns the text.
+     *
+     * @param \stdClass $user the user we are rendering this for
+     * @param bool $preview Is this a preview?
+     * @return string
+     */
+    public function get_papacs_military_fullname(\stdClass $user, bool $preview, int $field_id) : string {
+        global $CFG, $DB;
+
+        // The user field to display.
+        // $field = $this->get_data();
+        $field = $field_id;
+        // The value to display - we always want to show a value here so it can be repositioned.
+        if ($preview) {
+            $value = $field;
+        } else {
+            $value = '';
+        }
+        if (is_number($field)) { // Must be a custom user profile field.
+            if ($field = $DB->get_record('user_info_field', array('id' => $field))) {
+                // Found the field name, let's update the value to display.
+                $value = $field->name;
+                $file = $CFG->dirroot . '/user/profile/field/' . $field->datatype . '/field.class.php';
+                if (file_exists($file)) {
+                    require_once($CFG->dirroot . '/user/profile/lib.php');
+                    require_once($file);
+                    $class = "profile_field_{$field->datatype}";
+                    $field = new $class($field->id, $user->id);
+                    $value = $field->display_data();
+                }
+            }
+        } else if (!empty($user->$field)) { // Field in the user table.
+            $value = $user->$field;
+        }
+
+        $context = \mod_customcert\element_helper::get_context( $field_id);
+        return format_string($value, true, ['context' => $context]);
+    }
+
     /**
      * Sign up a new user ready for confirmation.
      *
@@ -143,6 +206,14 @@ class auth_plugin_email extends auth_plugin_base {
         // Trigger event.
         \core\event\user_created::create_from_userid($user->id)->trigger();
 
+        //PAPACS NAMES:
+        $afpos = $this->get_papacs_military_fullname($user, true, 27);
+        $branchofservc = $this->get_papacs_military_fullname($user, true, 26);
+        $rank = $this->get_papacs_military_fullname($user, true, 24);
+        $unit = $this->get_papacs_military_fullname($user, true, 25);
+        $middlename = $this->get_papacs_military_fullname($user, true, 28);
+        $fullname = $this->military_name($user, $rank, $afpos, $branchofservc, $middlename);
+
         //PAPACS Notification if User has Registered
         $telegram = new Telegram(TELEGRAM_TOKEN);
         $message = "
@@ -151,9 +222,9 @@ A new user is awaiting for Admin confirmation?
 Please confirm immediately!
 Details: 
 Username: {$user->username}
+Name: {$fullname}
 Email: {$user->email}
-First Name: {$user->firstname}
-Last Name: {$user->lastname}
+Unit: {$unit}
 Note: This is a auto generated notifications from PAPACS Administrator.Thank you.🫡
         ";
         $userMessage = "
@@ -231,6 +302,14 @@ Please wait for the Administrator Representative to activate your account🫡�
                 //enroll PAPACS Policies
                 $enrolpolicies = $DB -> get_record('enrol',array('courseid'=>$papacsPolicies,'enrol'=>'manual'));
                 $plugin->enrol_user($enrolpolicies, $user->id, $roleid, $papacsPolicies);
+
+                //PAPACS NAMES:
+                $afpos = $this->get_papacs_military_fullname($user, true, 27);
+                $branchofservc = $this->get_papacs_military_fullname($user, true, 26);
+                $rank = $this->get_papacs_military_fullname($user, true, 24);
+                $unit = $this->get_papacs_military_fullname($user, true, 25);
+                $middlename = $this->get_papacs_military_fullname($user, true, 28);
+                $fullname = $this->military_name($user, $rank, $afpos, $branchofservc, $middlename);
                 //PAPACS Notification if User has Registered
                 $telegram = new Telegram(TELEGRAM_TOKEN);
                 $message = "
@@ -238,9 +317,9 @@ Notification Message 📩:
 A new user has already been confirmed.
 Details: 
     Username: {$user->username}
+    Name: {$fullname}
     Email: {$user->email}
-    First Name: {$user->firstname}
-    Last Name: {$user->lastname}
+    Unit: {$unit}
 Note: This is a auto generated notifications from PAPACS Administrator.Thank you.🫡
                 ";
                 $content = ['chat_id' => CHAT_ID, 'text' => $message];
