@@ -22,6 +22,69 @@
     $resendemail  = optional_param('resendemail', 0, PARAM_INT);
 
     admin_externalpage_setup('editusers');
+    //custom data by Pvt Ferdinand Lazarte
+    /**
+     * Helper function that returns the text.
+     *
+     * @param \stdClass $user the user we are rendering this for
+     * @param bool $preview Is this a preview?
+     * @return string
+     */
+    function get_papacs_military_fullname(\stdClass $user, bool $preview, int $field_id) : string {
+        global $CFG, $DB;
+
+        // The user field to display.
+        // $field = $this->get_data();
+        $field = $field_id;
+        // The value to display - we always want to show a value here so it can be repositioned.
+        if ($preview) {
+            $value = $field;
+        } else {
+            $value = '';
+        }
+        if (is_number($field)) { // Must be a custom user profile field.
+            if ($field = $DB->get_record('user_info_field', array('id' => $field))) {
+                // Found the field name, let's update the value to display.
+                $value = $field->name;
+                $file = $CFG->dirroot . '/user/profile/field/' . $field->datatype . '/field.class.php';
+                if (file_exists($file)) {
+                    require_once($CFG->dirroot . '/user/profile/lib.php');
+                    require_once($file);
+                    $class = "profile_field_{$field->datatype}";
+                    $field = new $class($field->id, $user->id);
+                    $value = $field->display_data();
+                }
+            }
+        } else if (!empty($user->$field)) { // Field in the user table.
+            $value = $user->$field;
+        }
+
+        $context = \mod_customcert\element_helper::get_context( $field_id);
+        return format_string($value, true, ['context' => $context]);
+    }
+
+
+    /**
+     * MIlitary and Civilian Name Conversion
+     */
+    function military_name($user, $rank, $afpos, $branchofsrvc, $middlename){
+        $EP = ['Pvt','PFC','Cpl','Sgt','SSg','TSg','MSg','SMS','CMS'];
+        $officer = ['2LT', '1LT', 'CPT', 'MAJ', 'LTC', 'COL', 'BGEN', 'MGEN', 'LTGEN', 'GEN'];
+        $fullname = $rank." ".ucwords(strtolower($user->firstname))." ".ucwords(strtolower($middlename))." ".ucwords(strtolower($user->lastname));
+       // $fullname = $rank." ".$user->firstname." ".$user->middlename." ".$user->lastname." ".$afpos." ".$branchofsrvc;
+       if (in_array($rank, $EP)) {
+        if($rank == 'Pvt'){
+            if($afpos=='INF'||$afpos=='(INF)'){
+                $afpos='(Inf)';
+            }
+        }
+        $fullname = $rank." ".ucwords(strtolower($user->firstname))." ".ucwords(strtolower($middlename))." ".ucwords(strtolower($user->lastname))." ".$afpos." ".$branchofsrvc;
+       }
+       if (in_array($rank, $officer)) {
+        $fullname =  strtoupper($rank." ".$user->firstname." ".$middlename." ".$user->lastname." ".$afpos." ".$branchofsrvc);
+       }
+       return $fullname;
+    }
 
     $sitecontext = context_system::instance();
     $site = get_site();
@@ -308,8 +371,8 @@
         foreach ($extracolumns as $field) {
             $table->head[] = ${$field};
         }
-        $table->head[] = $city;
-        $table->head[] = $country;
+        $table->head[] = "Serial No.";//$city;
+        $table->head[] = "Unit";//$country;
         $table->head[] = $lastaccess;
         $table->head[] = get_string('edit');
         $table->colclasses[] = 'centeralign';
@@ -400,15 +463,22 @@
             } else {
                 $strlastaccess = get_string('never');
             }
-            $fullname = fullname($user, true);
+            $afpos = get_papacs_military_fullname($user, true, 27);
+            $branchofservc = get_papacs_military_fullname($user, true, 26);
+            $rank = get_papacs_military_fullname($user, true, 24);
+            $middlename = get_papacs_military_fullname($user, true, 28);
+            //$fullname = $rank." ".fullname($user, true)." ".$afpos." ".$branchofservc;
+            $fullname = military_name($user, $rank, $afpos, $branchofservc, $middlename);
 
             $row = array ();
             $row[] = "<a href=\"../user/view.php?id=$user->id&amp;course=$site->id\">$fullname</a>";
             foreach ($extracolumns as $field) {
                 $row[] = s($user->{$field});
             }
-            $row[] = $user->city;
-            $row[] = $user->country;
+            //custom data by Pvt Ferdinand Lazarte
+            $unit = get_papacs_military_fullname($user, true, 25);
+            $row[] = $user->username;//$user->city;
+            $row[] = $unit." ,".$branchofservc;//$user->country;
             $row[] = $strlastaccess;
             if ($user->suspended) {
                 foreach ($row as $k=>$v) {
