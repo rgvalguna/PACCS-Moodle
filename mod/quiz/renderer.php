@@ -1133,7 +1133,7 @@ class mod_quiz_renderer extends plugin_renderer_base {
             }
 
             // Ouside the if because we may be showing feedback but not grades.
-            $attemptgrade = quiz_rescale_grade($attemptobj->get_sum_marks(), $quiz, false);
+            $attemptgrade = quiz_rescale_grade($attemptobj->get_sum_marks(), $quiz, false); 
 
             if ($viewobj->gradecolumn) {
                 if ($attemptoptions->marks >= question_display_options::MARK_AND_MAX &&
@@ -1166,19 +1166,23 @@ class mod_quiz_renderer extends plugin_renderer_base {
                     $row[] = '';
                 }
             }
-
             if ($attemptobj->is_preview()) {
                 $table->data['preview'] = $row;
             } else {
                 $table->data[$attemptobj->get_attempt_number()] = $row;
-            }
+            }//var_dump($table->data);
         } // End of loop over attempts.
         
         //PAPACS Grade Override
-        $failedExam = '';
-        $sumofgrades = $quiz->sumgrades;
-        $passgrade = explode(' ',$viewobj->infomessages[1]);
-        if($attemptgrade < $passgrade[3] ){
+        $failedExam = ''; 
+        $sumofgrades = $quiz->sumgrades; 
+        $tattempt =  explode(' ',$viewobj->infomessages[0]);
+        if ($tattempt[2] > 1){
+            $passgrade = explode(' ',$viewobj->infomessages[3]);
+         }else{
+            $passgrade = explode(' ',$viewobj->infomessages[2]);
+         }
+        if($attemptgrade <   $passgrade[3] ){
             $failedExam = "<h4>For this test, you've only earned <b style='color:red;'>{$attemptgrade}</b> points, and unfortunately you did not pass 😔 See our Training Modules to fully comply within the next 7 Days! Keep Learning!</h4>\n";
         }
         $output = '';
