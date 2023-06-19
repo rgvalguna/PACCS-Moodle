@@ -110,7 +110,25 @@ if ($currentattemptid) {
     }
 }
 
-$attempt = quiz_prepare_and_start_new_attempt($quizobj, $attemptnumber, $lastattempt);
+// Get the user's previous attempt
+if($lastattempt->timefinish){
+    $currentTimestamp =  date('Y-m-d', time());
+    $lastatmpt = date('Y-m-d', (int)$lastattempt->timefinish);
+    $now = new DateTime( $currentTimestamp);
+    $prev = new DateTime($lastatmpt);
+    $days  = $prev->diff($now)->format('%a');
+    $timeDifference = (int)$days;
+    // Check if the user attempted the quiz within the last 7 days
+    if ($timeDifference < 7 ) { // 7 days retake of PAPACS
+        // Display an error message to the user
+        // print_error('quiz_attempts_error', 'quiz', $returnurl);
+        $remaining = 7 - $timeDifference;
+        $attemp_message = "According to the <b>PAPACS Policy</b>, users are required to enable the option for retaking an exam within <b>7</b> days from the last attempt. You have <b>4 days</b> left to do so." ;
+        notice($attemp_message, "/mod/quiz/view.php?id={$id}");
+    }else{
+        $attempt = quiz_prepare_and_start_new_attempt($quizobj, $attemptnumber, $lastattempt);
+        // Redirect to the attempt page.
+        redirect($quizobj->attempt_url($attempt->id, $page));
+    }
+}
 
-// Redirect to the attempt page.
-redirect($quizobj->attempt_url($attempt->id, $page));
