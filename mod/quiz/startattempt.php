@@ -125,7 +125,7 @@ if($lastattempt->timefinish){
         $remaining = 7 - $timeDifference;
         $attemp_message = "According to the <b>PAPACS Policy</b>, users are required to enable the option for retaking an exam within <b>7</b> days from the last attempt. You have <b>{$remaining} days</b> left to do so." ;
         notice($attemp_message, "/mod/quiz/view.php?id={$id}");
-    }else{ var_dump($timeDifference);
+    }else{
         $attempt = quiz_prepare_and_start_new_attempt($quizobj, $attemptnumber, $lastattempt);
         // Redirect to the attempt page.
         redirect($quizobj->attempt_url($attempt->id, $page));
