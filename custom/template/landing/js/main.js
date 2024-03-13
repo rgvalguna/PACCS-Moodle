@@ -199,6 +199,21 @@
       once: true,
       mirror: false
     });
+
   });
+
+     // Show the modal
+     const modal = document.getElementById('myModal');
+     if (modal) {
+         modal.style.display = 'block';
+     }
+
+     document.addEventListener("DOMContentLoaded", function() {
+      // Trigger the modal on page load
+      var modalTriggerBtn = document.getElementById("modalTriggerBtn");
+      if (modalTriggerBtn) {
+        modalTriggerBtn.click();
+      }
+    });
 
 })()
